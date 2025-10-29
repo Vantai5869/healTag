@@ -1,40 +1,9 @@
 {
-  "Index": {
-    "boilerplateName": "Mẫu Next.js i18n",
-    "title": "Mẫu Next 15 với i18n và Shadcn UI",
-    "description": "Điểm khởi đầu mạnh mẽ cho ứng dụng web đa ngôn ngữ và dễ tiếp cận tiếp theo của bạn.",
-    "cloneRepository": "Sao chép Repository",
-    "leaveStar": "Để lại Sao",
-    "howToUse": "Cách sử dụng",
-    "gettingStarted": "Bắt đầu",
-    "installation": "Cài đặt",
-    "howToContribute": "Cách đóng góp",
-    "omitrtlUsage": "Cách sử dụng OmitRTL",
-    "OmitRTLInstruction": "Để sử dụng OmitRTL, chỉ cần bọc component bạn muốn bỏ qua hỗ trợ RTL bằng component OmitRTL.",
-    "contribute": "Đóng góp",
-    "installationSteps": {
-      "cloneRepository": "Sao chép repository:",
-      "installDependencies": "Cài đặt dependencies:",
-      "startDevServer": "Khởi động development server:"
-    },
-    "contributeSteps": {
-      "fork": "Fork repository",
-      "createBranch": "Tạo branch mới:",
-      "commit": "Commit các thay đổi:",
-      "push": "Push lên branch:",
-      "pullRequest": "Tạo Pull Request mới"
-    },
-    "error": {
-      "server": "Lỗi Server Nội bộ",
-      "sorry": "Xin lỗi, chúng tôi gặp phải sự cố không mong muốn trên server.",
-      "tryAgain": " Thử lại sau.",
-      "returnHome": "Về trang chủ"
-    }
-  },
-
-  "Footer": {
-    "copyright": "© 2025 Mẫu Next.js i18n. Mã nguồn mở theo giấy phép MIT.",
-    "githubLink": "GitHub"
+  "error": {
+    "title": "Lỗi Server Nội bộ",
+    "sorry": "Xin lỗi, chúng tôi gặp phải sự cố không mong muốn trên server.",
+    "tryAgain": "Thử lại",
+    "returnHome": "Về trang chủ"
   },
   "Metadata": {
     "title": "Mẫu Next.js i18n - Mẫu Khởi đầu Song ngữ",
