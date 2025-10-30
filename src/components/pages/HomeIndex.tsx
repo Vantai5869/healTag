@@ -26,6 +26,8 @@ import HomeFooter from "@/components/pages/HomeFooter";
 import { useTranslations } from 'next-intl';
 import { SAMPLE_HOSPITALS, MiniHospital } from '@/lib/hospitalSamples';
 import { useState, useRef, useEffect } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Search } from 'lucide-react';
 
 export default function HomeIndex() {
   const tNav = useTranslations('Navigation');
@@ -39,6 +41,11 @@ export default function HomeIndex() {
   const [showSuggest, setShowSuggest] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  // helper classes for input width anim
+  const inputAnimWidthClass = `transition-all duration-300 w-full xl:w-[${isInputFocused ? 360 : 250}px]`;
+  const btnAnimWidthClass = `transition-all duration-300 items-center justify-center rounded-[8px] text-white cursor-pointer ${isInputFocused ? 'xl:w-[64px]' : 'xl:w-[180px]'} w-full xl:flex-none flex`;
 
   // Logic filter
   const filtered = SAMPLE_HOSPITALS.filter(h => {
@@ -156,37 +163,46 @@ export default function HomeIndex() {
                       </Select>
                     </div>
                   </div>
-                  <div className="flex h-[50px] w-full md:flex-1 md:min-w-[250px] items-center justify-center rounded-[8px] bg-white/0">
+                  <div className="relative w-full">
                     <Input
                       ref={inputRef}
-                      className="box-border h-[50px] w-full rounded-lg border border-black/10 bg-white px-4 py-0 text-sm leading-none placeholder:text-black/60"
+                      className={`box-border h-[50px] rounded-lg border border-black/10 bg-white px-4 py-0 text-sm leading-none placeholder:text-black/60 ${inputAnimWidthClass}`}
                       placeholder={tForm('hospitalNamePlaceholder')}
                       aria-label={tForm('hospitalNamePlaceholder')}
                       value={searchValue}
                       onChange={e => { setSearchValue(e.target.value); setShowSuggest(true); }}
-                      onFocus={() => setShowSuggest(true)}
+                      onFocus={() => { setShowSuggest(true); setIsInputFocused(true); }}
+                      onBlur={() => setIsInputFocused(false)}
+                      spellCheck={false}
                     />
+                    {showSuggest && (filtered.length > 0 || !!searchValue) && (
+                      <div ref={resultRef} className="absolute z-20 left-0 right-0 mt-1 w-full rounded-xl bg-white shadow-xl border border-slate-200 max-h-80 overflow-y-auto min-w-0">
+                        {filtered.length === 0 ? (
+                          <div className="p-4 text-sm text-slate-500 text-center">Không tìm thấy bệnh viện phù hợp.</div>
+                        ) : (
+                          filtered.map(hospital => (
+                            <div key={hospital.id} className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer">
+                              <img src={hospital.logo} alt={hospital.name} className="h-8 w-8 rounded-full object-contain border border-slate-100" />
+                              <div className="min-w-0 flex-1">
+                                <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
+                                <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
+                              </div>
+                              <button className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer">Đặt lịch ngay</button>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
                   </div>
-                  {showSuggest && (filtered.length > 0 || searchValue) && (
-                    <div ref={resultRef} className="absolute left-0 right-0 z-10 mt-1 rounded-xl bg-white shadow-xl border border-slate-200 max-h-80 overflow-y-auto w-full min-w-0">
-                      {filtered.length === 0 ? (
-                        <div className="p-4 text-sm text-slate-500 text-center">Không tìm thấy bệnh viện phù hợp.</div>
-                      ) : filtered.map(hospital => (
-                        <div key={hospital.id} className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer">
-                          <img src={hospital.logo} alt={hospital.name} className="h-8 w-8 rounded-full object-contain border border-slate-100" />
-                          <div className="min-w-0 flex-1">
-                            <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
-                            <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
-                          </div>
-                          <button
-                            className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer"
-                          >Đặt lịch ngay</button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  <button className="flex h-[50px] w-full xl:w-[180px] xl:flex-none items-center justify-center rounded-[8px] text-white cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #51C0FF 0%, #007BFF 100%)" }}>
-                    <span className="text-center font-bold leading-[32px] tracking-[-0.6px] text-base">{tForm('searchButton')}</span>
+                  <button
+                    className={btnAnimWidthClass + " h-[50px] px-3"}
+                    style={{ backgroundImage: "linear-gradient(90deg, #51C0FF 0%, #007BFF 100%)" }}
+                  >
+                    {isInputFocused ? (
+                      <Search className="w-6 h-6" />
+                    ) : (
+                      <span className="text-center font-bold leading-[32px] tracking-[-0.6px] text-base">{tForm('searchButton')}</span>
+                    )}
                   </button>
                 </div>
               </div>
