@@ -14,14 +14,14 @@ import {
 const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const [currentLanguage, setCurrentLanguage] = useState("vi");
 
   useEffect(() => {
     const savedLanguage =
       document.cookie
         .split("; ")
         .find((row) => row.startsWith("NEXT_LOCALE="))
-        ?.split("=")[1] || "en";
+        ?.split("=")[1] || "vi";
     setCurrentLanguage(savedLanguage);
 
     const urlLanguage = pathname.split("/")[1];

@@ -1,0 +1,47 @@
+globs: frontend/**/*.{ts,tsx}
+description: Next.js + TypeScript + shadcn/ui frontend rules and structure guidance
+---
+# Frontend Rules (Next.js · TypeScript)
+
+- Project structure follows [PROJECT_STRUCTURE.md](mdc:PROJECT_STRUCTURE.md). Keep app/features/components/lib separated.
+
+## Code Style
+- Enable strict TypeScript; avoid any. Prefer explicit types in public APIs.
+- Use functional components with hooks; avoid legacy class components.
+- Co-locate component-specific logic; extract shared logic to lib/.
+- Keep props minimal; derive UI from state; avoid prop drilling (use context/zustand when needed).
+
+## UI & Styling
+- Use shadcn/ui components for consistency. Put custom UI under components/ui/.
+- Follow accessible patterns (labels, aria attributes). Keyboard-first UX.
+- Use Tailwind for styling; avoid inline styles except dynamic one-offs.
+- using min-w or max-w + w-full to replace width only
+
+## Data Fetching
+- Prefer server components and server actions where possible.
+- For client fetching, use SWR or React Query patterns in lib/ hooks.
+- Centralize API clients; do not hardcode endpoints in components.
+
+## State Management
+- Local UI state in component; cross-page state via context/zustand sparingly.
+- Avoid global stores for data that can be derived from URL or server.
+
+## Routing & Pages
+- Use Next.js App Router; colocate loading.tsx and error.tsx.
+- Dynamic routes must validate params; handle not-found.
+
+## Testing
+- Use @testing-library/react for rendering; avoid implementation details.
+- Component tests small and focused; add e2e where critical.
+
+## Performance
+- Memoize heavy components and callbacks (memo, useMemo, useCallback).
+- Code split large feature routes; lazy-load non-critical components.
+- Optimize images; use Next Image.
+
+## Observability
+- Add client-side logging for important actions; avoid PII in logs.
+
+## Domain Conventions (This Project)
+- Reuse backend column names in UI contracts (English identifiers). Descriptions/helptext in Vietnamese.
+- Features reflect domain: attendance, payroll, payslip.

@@ -5,9 +5,114 @@
     "tryAgain": "Thử lại",
     "returnHome": "Về trang chủ"
   },
+  "Navigation": {
+    "home": "Trang chủ",
+    "medicalFacilities": "Cơ sở y tế",
+    "medicalServices": "Dịch vụ y tế",
+    "doctors": "Bác sĩ",
+    "bookAppointment": "Đặt lịch khám",
+    "contact": "Liên hệ",
+    "aiAssistant": "Trợ lý AI",
+    "logoAlt": "HealTAG Logo",
+    "avatarAlt": "Ảnh đại diện"
+  },
+  "Form": {
+    "areaPlaceholder": "Khu vực",
+    "hanoi": "Hà Nội",
+    "hcmc": "TP. HCM",
+    "danang": "Đà Nẵng",
+    "hospitalNamePlaceholder": "Tên cơ sở y tế",
+    "searchButton": "Tìm kiếm"
+  },
+  "Home": {
+    "searchTitlePart1": "Tìm kiếm cơ sở y tế",
+    "searchTitlePart2": "gần bạn",
+    "searchDescription": "Bạn có thể lọc theo khu vực, tìm kiếm cơ sở y tế để xem địa chỉ, khoảng cách, giờ mở cửa, số điện thoại, hướng dẫn đường đi/đặt lịch, rồi xác nhận cơ sở phù hợp.",
+    "bannerAlt": "Banner quảng cáo",
+    "hospitals": {
+      "title": "Danh sách bệnh viện",
+      "subtitle": "Chọn bệnh viện để xem trang giới thiệu và đặt lịch",
+      "cta": "Mở",
+      "slugLabel": "slug",
+      "historyIconAlt": "Lịch sử tìm kiếm"
+    }
+  },
+  "Notification": {
+    "alt": "Thông báo",
+    "title": "Thông báo",
+    "noNotifications": "Không có thông báo mới.",
+    "markAsRead": "Đánh dấu đã đọc"
+  },
+  "User": {
+    "logout": "Đăng xuất"
+  },
   "Metadata": {
-    "title": "Mẫu Next.js i18n - Mẫu Khởi đầu Song ngữ",
-    "description": "Bộ khởi đầu Next.js quốc tế hóa (i18n) với hỗ trợ tiếng Anh và tiếng Việt. Bao gồm shadcn UI, chuyển đổi theme và hỗ trợ RTL.",
-    "keywords": "Next.js, i18n, quốc tế hóa, tiếng Anh, tiếng Việt, song ngữ, mẫu, mẫu khởi đầu, shadcn UI, hỗ trợ RTL"
+    "title": "HealTAG - Cổng đặt lịch khám bệnh viện toàn quốc",
+    "description": "HealTAG là cổng đặt lịch khám bệnh viện toàn quốc mà bạn có thể tìm kiếm bệnh viện và đặt lịch chính thống nhanh chóng và minh bạch.",
+    "keywords": "HealTAG, cổng đặt lịch khám bệnh viện toàn quốc, bệnh viện, lịch khám, đặt lịch, minh bạch, nhanh chóng"
+  },
+  "Landing": {
+    "bachMai": {
+      "title": "{name}: Bệnh viện tuyến trung ương uy tín",
+      "subtitle": "Đặt lịch nhanh, minh bạch. Lịch chuyên khoa chính thức.",
+      "ctaPrimary": "Đặt lịch khám",
+      "ctaSecondary": "Xem dịch vụ",
+      "services": {
+        "title": "Dịch vụ nổi bật",
+        "subtitle": "Chuyên khoa phổ biến và thủ thuật",
+        "items": {
+          "1": {"title": "Khám tổng quát", "desc": "Khám sức khỏe và tầm soát"},
+          "2": {"title": "Tim mạch", "desc": "Chẩn đoán và điều trị tim mạch"},
+          "3": {"title": "Nhi khoa", "desc": "Chăm sóc sức khỏe trẻ em"}
+        }
+      },
+      "booking": {
+        "title": "Đặt lịch nhanh",
+        "namePlaceholder": "Họ và tên",
+        "nameAria": "Họ và tên",
+        "phonePlaceholder": "Số điện thoại",
+        "phoneAria": "Số điện thoại",
+        "dateAria": "Ngày khám",
+        "departmentAria": "Chuyên khoa",
+        "departmentPlaceholder": "Chọn chuyên khoa",
+        "departments": {
+          "general": "Tổng quát",
+          "cardio": "Tim mạch",
+          "pediatrics": "Nhi khoa"
+        },
+        "submit": "Gửi yêu cầu"
+      }
+    },
+    "choRay": {
+      "title": "{name}: Chăm sóc toàn diện, cơ sở hiện đại",
+      "subtitle": "Đặt lịch chính thống với lịch trực tuyến và hỗ trợ.",
+      "ctaPrimary": "Đặt lịch ngay",
+      "ctaSecondary": "Khám phá dịch vụ",
+      "services": {
+        "title": "Dịch vụ tiêu biểu",
+        "subtitle": "Chuyên khoa được quan tâm",
+        "items": {
+          "1": {"title": "Phòng khám tổng quát", "desc": "Tư vấn và tầm soát"},
+          "2": {"title": "Trung tâm tim mạch", "desc": "Chẩn đoán và điều trị"},
+          "3": {"title": "Phòng khám nhi", "desc": "Sức khỏe trẻ em"}
+        }
+      },
+      "booking": {
+        "title": "Đặt lịch trong vài phút",
+        "namePlaceholder": "Họ tên",
+        "nameAria": "Họ tên",
+        "phonePlaceholder": "Số điện thoại",
+        "phoneAria": "Số điện thoại",
+        "dateAria": "Ngày",
+        "departmentAria": "Chuyên khoa",
+        "departmentPlaceholder": "Chọn chuyên khoa",
+        "departments": {
+          "general": "Tổng quát",
+          "cardio": "Tim mạch",
+          "pediatrics": "Nhi khoa"
+        },
+        "submit": "Đặt lịch"
+      }
+    }
   }
 }

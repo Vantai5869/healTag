@@ -5,9 +5,114 @@
     "tryAgain": "Try again",
     "returnHome": "Return home"
   },
+  "Navigation": {
+    "home": "Home",
+    "medicalFacilities": "Medical Facilities",
+    "medicalServices": "Medical Services",
+    "doctors": "Doctors",
+    "bookAppointment": "Book Appointment",
+    "contact": "Contact",
+    "aiAssistant": "AI Assistant",
+    "logoAlt": "HealTAG Logo",
+    "avatarAlt": "Avatar"
+  },
+  "Form": {
+    "areaPlaceholder": "Area",
+    "hanoi": "Hanoi",
+    "hcmc": "HCMC",
+    "danang": "Danang",
+    "hospitalNamePlaceholder": "Hospital name",
+    "searchButton": "Search"
+  },
+  "Home": {
+    "searchTitlePart1": "Find medical facilities",
+    "searchTitlePart2": "near you",
+    "searchDescription": "You can filter by area, search for hospitals to view addresses, distances, opening hours, phone numbers, directions, book appointments, and then confirm the right facility.",
+    "bannerAlt": "Banner ad",
+    "hospitals": {
+      "title": "Hospitals",
+      "subtitle": "Select a hospital to view its landing page and book",
+      "cta": "Open",
+      "slugLabel": "slug",
+      "historyIconAlt": "Search history"
+    }
+  },
+  "Notification": {
+    "alt": "Notifications",
+    "title": "Notifications",
+    "noNotifications": "No new notifications.",
+    "markAsRead": "Mark as read"
+  },
+  "User": {
+    "logout": "Log out"
+  },
   "Metadata": {
-    "title": "Next.js i18n Template - Bilingual Starter Template",
-    "description": "Next.js internationalization (i18n) starter kit with English and Vietnamese support. Includes shadcn UI, theme switching, and RTL support.",
-    "keywords": "Next.js, i18n, internationalization, English, Vietnamese, bilingual, template, starter template, shadcn UI, RTL support"
+    "title": "HealTAG - National hospital booking portal",
+    "description": "HealTAG is a national hospital booking portal that allows you to search hospitals and book official appointments quickly and transparently.",
+    "keywords": "HealTAG, national hospital booking portal, hospitals, appointments, booking, transparent, quick"
+  },
+  "Landing": {
+    "bachMai": {
+      "title": "{name}: Trusted national hospital",
+      "subtitle": "Fast, transparent appointment booking. Official departments and schedules.",
+      "ctaPrimary": "Book appointment",
+      "ctaSecondary": "View services",
+      "services": {
+        "title": "Key services",
+        "subtitle": "Popular specialties and procedures",
+        "items": {
+          "1": {"title": "General examination", "desc": "Primary care and screening"},
+          "2": {"title": "Cardiology", "desc": "Heart care and diagnostics"},
+          "3": {"title": "Pediatrics", "desc": "Children's health services"}
+        }
+      },
+      "booking": {
+        "title": "Quick appointment",
+        "namePlaceholder": "Full name",
+        "nameAria": "Full name",
+        "phonePlaceholder": "Phone number",
+        "phoneAria": "Phone number",
+        "dateAria": "Appointment date",
+        "departmentAria": "Department",
+        "departmentPlaceholder": "Choose department",
+        "departments": {
+          "general": "General",
+          "cardio": "Cardiology",
+          "pediatrics": "Pediatrics"
+        },
+        "submit": "Submit request"
+      }
+    },
+    "choRay": {
+      "title": "{name}: Comprehensive care, modern facilities",
+      "subtitle": "Official booking with live schedules and support.",
+      "ctaPrimary": "Book now",
+      "ctaSecondary": "Explore services",
+      "services": {
+        "title": "Highlighted services",
+        "subtitle": "Specialties with high demand",
+        "items": {
+          "1": {"title": "General clinic", "desc": "Consultations and screenings"},
+          "2": {"title": "Cardiac center", "desc": "Heart diagnostics and care"},
+          "3": {"title": "Pediatric clinic", "desc": "Child healthcare"}
+        }
+      },
+      "booking": {
+        "title": "Book in minutes",
+        "namePlaceholder": "Your name",
+        "nameAria": "Your name",
+        "phonePlaceholder": "Phone number",
+        "phoneAria": "Phone number",
+        "dateAria": "Date",
+        "departmentAria": "Department",
+        "departmentPlaceholder": "Select department",
+        "departments": {
+          "general": "General",
+          "cardio": "Cardiology",
+          "pediatrics": "Pediatrics"
+        },
+        "submit": "Book appointment"
+      }
+    }
   }
 }
