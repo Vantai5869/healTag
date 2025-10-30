@@ -37,7 +37,7 @@ export default function HospitalMiniCard({ hospital }: Props) {
           style={{ padding: "6px 12px 6px 16px", background: "linear-gradient(90deg, #047DFF 0%, #51C1FF 100%)" }}
         >
           <span className="text-white" style={{ fontFamily: "Inter", fontSize: 14, fontWeight: 400, lineHeight: "140%", letterSpacing: "-0.84px" }}>
-            {t('cta', { default: "Đặt lịch ngay" })}
+            {t('bookNowButton')}
           </span>
         </button>
       </div>

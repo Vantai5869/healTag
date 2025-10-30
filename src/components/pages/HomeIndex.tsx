@@ -21,7 +21,11 @@ import HospitalsStyledSection from "@/components/pages/home/HospitalsStyledSecti
 import MobileNavDrawer from "@/components/MobileNavDrawer";
 import MobileLangSwitcher from "@/components/MobileLangSwitcher";
 import NotificationDropdown from "@/components/NotificationDropdown";
+import HomeMainFeatureSection from "@/components/pages/HomeMainFeatureSection";
+import HomeFooter from "@/components/pages/HomeFooter";
 import { useTranslations } from 'next-intl';
+import { SAMPLE_HOSPITALS, MiniHospital } from '@/lib/hospitalSamples';
+import { useState, useRef, useEffect } from 'react';
 
 export default function HomeIndex() {
   const tNav = useTranslations('Navigation');
@@ -30,8 +34,34 @@ export default function HomeIndex() {
   const tNotif = useTranslations('Notification');
   const tUser = useTranslations('User');
 
+  const [searchValue, setSearchValue] = useState('');
+  const [area, setArea] = useState('');
+  const [showSuggest, setShowSuggest] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Logic filter
+  const filtered = SAMPLE_HOSPITALS.filter(h => {
+    const matchArea = !area || (area === 'hn' && h.address.includes('Hà Nội')) || (area === 'hcm' && h.address.includes('TP.HCM')) || (area === 'dn' && h.address.includes('Đà Nẵng'));
+    const matchName = !searchValue || h.name.toLowerCase().includes(searchValue.trim().toLowerCase());
+    return matchArea && matchName;
+  }).slice(0, 10);
+
+  useEffect(() => {
+      if (!showSuggest) return;
+      function handleClick(e: MouseEvent) {
+        if (!resultRef.current) return;
+        if (!inputRef.current) return;
+        if (!resultRef.current.contains(e.target as Node) && !inputRef.current.contains(e.target as Node)) {
+          setShowSuggest(false);
+        }
+      }
+      document.addEventListener('mousedown', handleClick);
+      return () => document.removeEventListener('mousedown', handleClick);
+  }, [showSuggest]);
+
   return (
-    <div className="pb-16">
+    <div className="">
       {/* Banner/Hero with gradient background */}
       <div className="w-full bg-gradient-to-t from-[#007BFF] to-white">
         <div className="mx-auto flex w-full max-w-[1512px] flex-col items-center gap-8 sm:gap-10 lg:gap-12 pt-6 pb-8 sm:py-[50px] px-4 sm:px-6 lg:px-8">
@@ -108,7 +138,7 @@ export default function HomeIndex() {
                 </div>
                 {/* Image shown above the form when stacked (mobile) */}
                 <div className="relative block md:hidden mt-4 w-full">
-                  <Image src="/imgs/banner-art.png" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px] mx-auto" priority />
+                  <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px] mx-auto" priority />
                 </div>
                 {/* Inline form with the left block on md+ */}
                 <div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }}>
@@ -127,23 +157,50 @@ export default function HomeIndex() {
                     </div>
                   </div>
                   <div className="flex h-[50px] w-full md:flex-1 md:min-w-[250px] items-center justify-center rounded-[8px] bg-white/0">
-                    <Input className="box-border h-[50px] w-full rounded-lg border border-black/10 bg-white px-4 py-0 text-sm leading-none placeholder:text-black/60" placeholder={tForm('hospitalNamePlaceholder')} aria-label={tForm('hospitalNamePlaceholder')} />
+                    <Input
+                      ref={inputRef}
+                      className="box-border h-[50px] w-full rounded-lg border border-black/10 bg-white px-4 py-0 text-sm leading-none placeholder:text-black/60"
+                      placeholder={tForm('hospitalNamePlaceholder')}
+                      aria-label={tForm('hospitalNamePlaceholder')}
+                      value={searchValue}
+                      onChange={e => { setSearchValue(e.target.value); setShowSuggest(true); }}
+                      onFocus={() => setShowSuggest(true)}
+                    />
                   </div>
-                  <button className="flex h-[50px] w-full xl:w-[180px] xl:flex-none items-center justify-center rounded-[8px] text-white" style={{ backgroundImage: "linear-gradient(90deg, #51C0FF 0%, #007BFF 100%)" }}>
+                  {showSuggest && (filtered.length > 0 || searchValue) && (
+                    <div ref={resultRef} className="absolute left-0 right-0 z-10 mt-1 rounded-xl bg-white shadow-xl border border-slate-200 max-h-80 overflow-y-auto w-full min-w-0">
+                      {filtered.length === 0 ? (
+                        <div className="p-4 text-sm text-slate-500 text-center">Không tìm thấy bệnh viện phù hợp.</div>
+                      ) : filtered.map(hospital => (
+                        <div key={hospital.id} className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer">
+                          <img src={hospital.logo} alt={hospital.name} className="h-8 w-8 rounded-full object-contain border border-slate-100" />
+                          <div className="min-w-0 flex-1">
+                            <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
+                            <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
+                          </div>
+                          <button
+                            className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer"
+                          >Đặt lịch ngay</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <button className="flex h-[50px] w-full xl:w-[180px] xl:flex-none items-center justify-center rounded-[8px] text-white cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #51C0FF 0%, #007BFF 100%)" }}>
                     <span className="text-center font-bold leading-[32px] tracking-[-0.6px] text-base">{tForm('searchButton')}</span>
                   </button>
                 </div>
               </div>
               <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">
-                <Image src="/imgs/banner-art.png" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px]" priority />
+                <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px]" priority />
               </div>
             </div>
           </div>
         </div>
       </div>
-
       {/* Hospitals List - new styled block with Swiper */}
       <HospitalsStyledSection />
+      <HomeMainFeatureSection />
+      <HomeFooter />
     </div>
   );
 }

@@ -34,7 +34,50 @@
       "subtitle": "Select a hospital to view its landing page and book",
       "cta": "Open",
       "slugLabel": "slug",
+      "bookNowButton": "Book now",
       "historyIconAlt": "Search history"
+    },
+    "MainFeatureSection": {
+      "title": "Bridge the gap with electronic health records and smart booking system",
+      "introTitle": "HealTAG-care improves treatment outcomes across multiple health issues",
+      "introDetail": "We accompany you from early screening, the right doctor booking, to post-visit electronic health tracking. Automated reminders, online consultations, and record management help you actively and easily care for your health every day.",
+      "services": {
+        "specialist": {
+          "title": "Book by specialty",
+          "desc": "Select a specialty and a suitable doctor in just 1 minute.",
+          "cta": "Try now"
+        },
+        "test": {
+          "title": "Book test",
+          "desc": "Schedule lab tests at partnered facilities or at your home.",
+          "cta": "Try now"
+        },
+        "package": {
+          "title": "Health check package",
+          "desc": "Choose a general or tailored package (cardio, gastro, neuro, ...).",
+          "cta": "Try now"
+        },
+        "vaccine": {
+          "title": "Book vaccination",
+          "desc": "Reminds you to vaccinate by age and health status.",
+          "cta": "Try now"
+        },
+        "consult": {
+          "title": "Online consultation",
+          "desc": "For ongoing issues or quick advice as needed.",
+          "cta": "Try now"
+        },
+        "reminder": {
+          "title": "Reminders & record management",
+          "desc": "Automatic reminders and medical record storage post-visit.",
+          "cta": "Try now"
+        }
+      }
+    },
+    "Footer": {
+      "main": "A personalized roadmap to lasting health, without wasting your time.",
+      "button": "Proactive care",
+      "sub": "Well-being for the long run"
     }
   },
   "Notification": {
@@ -114,5 +157,9 @@
         "submit": "Book appointment"
       }
     }
+  },
+  "HospitalCard": {
+    "logoAlt": "Logo {name}",
+    "bookNowButton": "Book now"
   }
 }

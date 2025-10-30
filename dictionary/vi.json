@@ -34,7 +34,50 @@
       "subtitle": "Chọn bệnh viện để xem trang giới thiệu và đặt lịch",
       "cta": "Mở",
       "slugLabel": "slug",
+      "bookNowButton": "Đặt lịch ngay",
       "historyIconAlt": "Lịch sử tìm kiếm"
+    },
+    "MainFeatureSection": {
+      "title": "Rút ngắn khoảng cách bằng hồ sơ điện tử và hệ thống đặt lịch thông minh",
+      "introTitle": "HealTAG-care cải thiện kết quả điều trị trên nhiều vấn đề sức khỏe",
+      "introDetail": "Chúng tôi đồng hành cùng bạn từ sàng lọc sớm, đặt lịch đúng bác sĩ, điện tử theo dõi sau khám. Hệ thống nhắc hẹn, tư vấn trực tuyến và quản lý hồ sơ tự động giúp việc chăm sóc chủ động, dễ dàng hơn mỗi ngày.",
+      "services": {
+        "specialist": {
+          "title": "Đặt lịch theo chuyên khoa",
+          "desc": "Chọn chuyên khoa và bác sĩ phù hợp chỉ trong 1 phút.",
+          "cta": "Trải nghiệm ngay"
+        },
+        "test": {
+          "title": "Đặt lịch xét nghiệm",
+          "desc": "Đăng ký xét nghiệm tại cơ sở liên kết hoặc lấy mẫu tại nhà.",
+          "cta": "Trải nghiệm ngay"
+        },
+        "package": {
+          "title": "Gói khám sức khỏe",
+          "desc": "Chọn gói tổng quát hoặc theo nhu cầu (tim mạch, tiêu hoá, thần kinh...).",
+          "cta": "Trải nghiệm ngay"
+        },
+        "vaccine": {
+          "title": "Đặt lịch tiêm chủng",
+          "desc": "Hệ thống nhắc tiêm theo độ tuổi và tình trạng sức khỏe.",
+          "cta": "Trải nghiệm ngay"
+        },
+        "consult": {
+          "title": "Tư vấn trực tuyến",
+          "desc": "Phù hợp cho các vấn đề cố định kỳ hoặc cần tư vấn nhanh.",
+          "cta": "Trải nghiệm ngay"
+        },
+        "reminder": {
+          "title": "Nhắc hẹn - Quản lý hồ sơ",
+          "desc": "Nhắc hẹn tự động và lưu hồ sơ sau khám.",
+          "cta": "Trải nghiệm ngay"
+        }
+      }
+    },
+    "Footer": {
+      "main": "Lộ trình cá nhân hóa giúp cải thiện sức khỏe bền vững mà không tốn nhiều thời gian.",
+      "button": "Chủ động chăm sóc",
+      "sub": "Hạnh phúc bền lâu"
     }
   },
   "Notification": {
@@ -114,5 +157,9 @@
         "submit": "Đặt lịch"
       }
     }
+  },
+  "HospitalCard": {
+    "logoAlt": "Logo {name}",
+    "bookNowButton": "Đặt lịch ngay"
   }
 }
