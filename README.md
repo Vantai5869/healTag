@@ -38,6 +38,3 @@ src/i18n/              # routing & helpers i18n
 ## SEO & Preview
 - Thay ảnh OG tại `public/og-image.png` (khuyến nghị 1200x630).
 - Metadata đã dùng thương hiệu HealTAG; trang admin đã chặn index.
-
-## Bản quyền
-© HealTAG. Tất cả quyền được bảo lưu.
