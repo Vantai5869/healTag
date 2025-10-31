@@ -34,14 +34,14 @@ const registry: ComponentRegistry = {
   header: {
     default: headerVariants.default,
     variant1: headerVariants.variant1 ?? headerVariants.default,
-    variant2: (headerVariants as any).variant2 ?? headerVariants.default,
-    variant3: (headerVariants as any).variant3 ?? headerVariants.default,
+    variant2: (headerVariants as Record<string, React.ComponentType<SectionComponentProps>>).variant2 ?? headerVariants.default,
+    variant3: (headerVariants as Record<string, React.ComponentType<SectionComponentProps>>).variant3 ?? headerVariants.default,
   },
   hero: {
     default: heroVariants.default,
     variant1: heroVariants.variant1 ?? heroVariants.default,
-    variant2: (heroVariants as any).variant2 ?? heroVariants.default,
-    variant3: (heroVariants as any).variant3 ?? heroVariants.default,
+    variant2: (heroVariants as Record<string, React.ComponentType<SectionComponentProps>>).variant2 ?? heroVariants.default,
+    variant3: (heroVariants as Record<string, React.ComponentType<SectionComponentProps>>).variant3 ?? heroVariants.default,
   },
   services: {
     default: ServicesSection,

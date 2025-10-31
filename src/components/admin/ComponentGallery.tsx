@@ -55,15 +55,21 @@ export default function ComponentGallery({ selectedSectionId }: { selectedSectio
         </div>
         <div className="p-4">
           {(() => {
-            const Comp = getSectionComponent(section.type as any, section.componentVariant as any);
+            const sType = section.type as SectionType;
+            const vKey = section.componentVariant as ComponentVariant;
+            const Comp = getSectionComponent(sType, vKey);
             const sampleConfig = hospitalBySlug['bach-mai'];
             return (
               <div className="mx-auto max-w-[1200px]">
-                <Comp config={sampleConfig} theme={{
-                  primaryColor: config.theme.primaryColor,
-                  gradientFrom: config.theme.gradientFrom,
-                  gradientTo: config.theme.gradientTo,
-                }} variant={section.componentVariant as any} />
+                <Comp
+                  config={sampleConfig}
+                  theme={{
+                    primaryColor: config.theme.primaryColor,
+                    gradientFrom: config.theme.gradientFrom,
+                    gradientTo: config.theme.gradientTo,
+                  }}
+                  variant={vKey}
+                />
               </div>
             );
           })()}
