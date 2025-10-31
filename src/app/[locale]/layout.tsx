@@ -115,7 +115,7 @@ export async function generateMetadata({
     description: t("description"),
     keywords: t("keywords"),
     other: {
-      "google-site-verification": "sVYBYfSJfXdBca3QoqsZtD6lsWVH6sk02RCH4YAbcm8",
+      "google-site-verification": "",
     },
     openGraph: {
       title: t("title"),
