@@ -73,13 +73,13 @@ export default function NewsSection({ theme }: SectionComponentProps) {
                 <div className="flex flex-col items-start gap-2 p-3">
                   <div
                     className="text-[18px] font-medium leading-[150%] text-[#072831] text-ellipsis overflow-hidden"
-                    style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical' as any, WebkitLineClamp: 1 }}
+                    style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1 }}
                   >
                     Tiêu đề bài viết mẫu {idx + 1}
                   </div>
                   <div
                     className="text-[12px] font-normal leading-[150%] text-[#09333F] text-ellipsis overflow-hidden w-[257.32px]"
-                    style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical' as any, WebkitLineClamp: 2 }}
+                    style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2 }}
                   >
                     Mô tả ngắn của bài viết. Nội dung mô tả sẽ bị cắt dòng sau 2 dòng để đảm bảo bố cục gọn gàng theo thiết kế.
                   </div>

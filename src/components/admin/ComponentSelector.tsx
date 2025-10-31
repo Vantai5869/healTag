@@ -18,7 +18,7 @@ const VARIANT_LABELS: Record<ComponentVariant, string> = {
   variant3: 'Biến thể 3',
 };
 
-export function ComponentSelector({ sectionId, sectionType }: ComponentSelectorProps) {
+export function ComponentSelector({ sectionId }: ComponentSelectorProps) {
   const { config, updateSection } = useLandingStore();
   const section = config.sections.find((s) => s.id === sectionId);
 

@@ -8,7 +8,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Bell } from "lucide-react";

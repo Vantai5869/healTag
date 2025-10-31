@@ -13,7 +13,7 @@ export default function HeroSectionV2({ config, theme }: SectionComponentProps) 
         <Image src="/imgs/doctor-banner.png" alt="Hero background" fill priority className="object-cover" />
         <div
           className="absolute inset-0 opacity-85"
-          style={{ background: `linear-gradient(90deg, ${gradientFrom} 0%, ${gradientTo} 100%)`, mixBlendMode: 'multiply' as any }}
+          style={{ background: `linear-gradient(90deg, ${gradientFrom} 0%, ${gradientTo} 100%)`, mixBlendMode: 'multiply' }}
         />
       </div>
 

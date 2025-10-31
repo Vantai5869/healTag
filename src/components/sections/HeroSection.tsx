@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { SectionComponentProps } from "@/lib/componentRegistry";
 
-export default function HeroSection({ config, theme }: SectionComponentProps) {
+export default function HeroSection({ theme }: SectionComponentProps) {
   const gradientFrom = theme?.gradientFrom || '#3A8EF6';
   const gradientTo = theme?.gradientTo || '#6F3AFA';
 

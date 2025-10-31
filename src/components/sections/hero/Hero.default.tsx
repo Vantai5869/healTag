@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { HeroProps } from "./Hero.base";
 
-export default function HeroDefault({ config, theme }: HeroProps) {
+export default function HeroDefault({ theme }: HeroProps) {
   const gradientFrom = theme?.gradientFrom || '#3A8EF6';
   const gradientTo = theme?.gradientTo || '#6F3AFA';
 

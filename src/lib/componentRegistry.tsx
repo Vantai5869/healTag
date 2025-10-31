@@ -31,8 +31,18 @@ type ComponentRegistry = {
 
 // Default components (we'll add variants later)
 const registry: ComponentRegistry = {
-  header: headerVariants as any,
-  hero: heroVariants as any,
+  header: {
+    default: headerVariants.default,
+    variant1: headerVariants.variant1 ?? headerVariants.default,
+    variant2: (headerVariants as any).variant2 ?? headerVariants.default,
+    variant3: (headerVariants as any).variant3 ?? headerVariants.default,
+  },
+  hero: {
+    default: heroVariants.default,
+    variant1: heroVariants.variant1 ?? heroVariants.default,
+    variant2: (heroVariants as any).variant2 ?? heroVariants.default,
+    variant3: (heroVariants as any).variant3 ?? heroVariants.default,
+  },
   services: {
     default: ServicesSection,
     variant1: ServicesSection,
@@ -67,14 +77,14 @@ export function getSectionComponent(
 }
 
 export function getVariantKeys(sectionType: SectionType): ComponentVariant[] {
-  if (sectionType === 'hero') return Object.keys(heroVariants) as ComponentVariant[];
-  if (sectionType === 'header') return Object.keys(headerVariants) as ComponentVariant[];
+  if (sectionType === 'hero') return ['default','variant1','variant2'];
+  if (sectionType === 'header') return ['default','variant1'];
   return ['default','variant1','variant2','variant3'];
 }
 
 export function getVariantLabel(sectionType: SectionType, key: string): string {
-  if (sectionType === 'hero') return (heroVariantLabels as any)[key] ?? key;
-  if (sectionType === 'header') return (headerVariantLabels as any)[key] ?? key;
+  if (sectionType === 'hero') return (heroVariantLabels as Record<string,string>)[key] ?? key;
+  if (sectionType === 'header') return (headerVariantLabels as Record<string,string>)[key] ?? key;
   const map: Record<string,string> = { default: 'Mặc định', variant1: 'Biến thể 1', variant2: 'Biến thể 2', variant3: 'Biến thể 3' };
   return map[key] ?? key;
 }

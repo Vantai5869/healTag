@@ -13,7 +13,7 @@ export default function HospitalsStyledSection() {
   const items = SAMPLE_HOSPITALS;
   const pages: MiniHospital[][] = [];
   for (let i = 0; i < items.length; i += 6) pages.push(items.slice(i, i + 6));
-  const [swiper, setSwiper] = useState<any>(null);
+  const [swiper, setSwiper] = useState<unknown>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -51,7 +51,7 @@ export default function HospitalsStyledSection() {
             <button
               key={i}
               aria-label={`Go to page ${i + 1}`}
-              onClick={() => swiper?.slideTo(i)}
+              onClick={() => (swiper as { slideTo?: (idx: number) => void } | null)?.slideTo?.(i)}
               className={`h-2.5 w-2.5 rounded-full transition-colors ${activeIndex === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
             />
           ))}

@@ -16,7 +16,7 @@ export interface SectionConfig {
   componentVariant: ComponentVariant;
   order: number;
   enabled: boolean;
-  props?: Record<string, any>;
+  props?: Record<string, unknown>;
 }
 
 export interface LandingPageConfig {

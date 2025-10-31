@@ -5,10 +5,8 @@ import { SectionList } from './SectionList';
 import { ThemeEditor } from './ThemeEditor';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { RotateCcw, Save, Eye, Settings } from 'lucide-react';
+import { RotateCcw, Settings } from 'lucide-react';
 import ComponentGallery from './ComponentGallery';
-import { getSectionComponent } from '@/lib/componentRegistry';
-import { hospitalBySlug } from '@/lib/hospitals';
 
 export default function AdminPanel() {
   const { config, resetConfig } = useLandingStore();
@@ -19,11 +17,10 @@ export default function AdminPanel() {
   // Avoid hydration mismatches due to localStorage-backed store and dnd-kit SSR
   useEffect(() => {
     setMounted(true);
-    // Select first section by default when mounting
     if (config.sections.length > 0) {
       setSelectedSectionId(config.sections.sort((a, b) => a.order - b.order)[0].id);
     }
-  }, []);
+  }, [config.sections]);
 
   if (!mounted) return null;
 

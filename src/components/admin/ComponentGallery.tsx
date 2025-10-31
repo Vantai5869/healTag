@@ -7,12 +7,6 @@ import { Button } from '@/components/ui/button';
 import { getSectionComponent, getVariantKeys, getVariantLabel } from '@/lib/componentRegistry';
 import { hospitalBySlug } from '@/lib/hospitals';
 
-const VARIANT_LABEL: Record<ComponentVariant, string> = {
-  default: 'Mặc định',
-  variant1: 'Biến thể 1',
-  variant2: 'Biến thể 2',
-  variant3: 'Biến thể 3',
-};
 
 const SECTION_LABEL: Record<SectionType, string> = {
   header: 'Header',
