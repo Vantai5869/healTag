@@ -16,7 +16,6 @@ export default function NewsSection({ theme }: SectionComponentProps) {
     common: ['/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png'],
   };
 
-  const primaryColor = theme?.primaryColor || '#3A8EF6';
 
   return (
     <section className="mt-16">
