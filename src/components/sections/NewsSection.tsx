@@ -6,9 +6,8 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useState } from 'react';
-import type { SectionComponentProps } from "@/lib/componentRegistry";
 
-export default function NewsSection({ theme }: SectionComponentProps) {
+export default function NewsSection() {
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
   const newsByTab: Record<string, string[]> = {
     latest: ['/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png'],
