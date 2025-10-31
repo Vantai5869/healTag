@@ -48,7 +48,7 @@ export default function DoctorsSection({ theme }: SectionComponentProps) {
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
-          spaceBetween={16}
+          spaceBetween={12}
           breakpoints={{
             1024: { spaceBetween: 30 },
           }}
@@ -64,16 +64,16 @@ export default function DoctorsSection({ theme }: SectionComponentProps) {
                 ref={(el) => {
                   if (el) cardRefs.current[idx] = el;
                 }}
-                className="flex w-[380px] min-w-[380px] max-w-[380px] p-[35px] pt-[35px] pb-[35px] px-[30px] items-start gap-[10px] rounded-[30px]"
+                className="flex w-[300px] min-w-[300px] max-w-[300px] md:w-[380px] md:min-w-[380px] md:max-w-[380px] p-[24px] md:p-[35px] items-start gap-[10px] rounded-[30px]"
                 style={{
                   background: 'rgba(251, 247, 210, 0.30)',
                   height: maxCardHeight ? `${maxCardHeight}px` : undefined,
                 }}
               >
                 {/* Inner column */}
-                <div className="flex flex-col items-center gap-[15px] flex-[1_0_0] h-full">
+                <div className="flex flex-col items-center gap-[12px] md:gap-[15px] flex-[1_0_0] h-full">
                   {/* Doctor image */}
-                  <div className="w-[260px] h-[260px] rounded-full bg-gradient-to-b from-white to-[#CFE6FF] p-2 shadow-sm">
+                  <div className="w-[220px] h-[220px] md:w-[260px] md:h-[260px] rounded-full bg-gradient-to-b from-white to-[#CFE6FF] p-2 shadow-sm">
                     <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center" style={{ background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})` }}>
                       <Image src={d.img} alt={d.name} width={240} height={240} className="rounded-full object-cover" />
                     </div>
@@ -81,14 +81,14 @@ export default function DoctorsSection({ theme }: SectionComponentProps) {
                   {/* Text block */}
                   <div className="flex flex-col items-center gap-[18px] self-stretch flex-1">
                     <div className="flex flex-col items-start gap-2 self-stretch">
-                      <div className="self-stretch text-center" style={{ color: '#2677BC', fontFamily: 'Inter', fontSize: 32, fontWeight: 700, lineHeight: 'normal' }}>
+                      <div className="self-stretch text-center" style={{ color: '#2677BC', fontFamily: 'Inter', fontSize: 24, fontWeight: 700, lineHeight: 'normal' }}>
                         {d.name}
                       </div>
-                      <div className="self-stretch text-center" style={{ color: '#FA843A', fontFamily: 'Inter', fontSize: 24, fontWeight: 400, lineHeight: 'normal' }}>
+                      <div className="self-stretch text-center" style={{ color: '#FA843A', fontFamily: 'Inter', fontSize: 20, fontWeight: 400, lineHeight: 'normal' }}>
                         {d.dept}
                       </div>
                     </div>
-                    <div className="text-center flex-[1_0_0]" style={{ color: '#5B5B5B', fontFamily: 'Inter', fontSize: 18, fontWeight: 400, lineHeight: 'normal' }}>
+                    <div className="text-center flex-[1_0_0]" style={{ color: '#5B5B5B', fontFamily: 'Inter', fontSize: 16, fontWeight: 400, lineHeight: 'normal' }}>
                       {d.desc}
                     </div>
                   </div>

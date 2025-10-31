@@ -22,9 +22,9 @@ export default function NewsSection({ theme }: SectionComponentProps) {
     <section className="mt-16">
       <div className="mx-auto w-full max-w-[1200px] flex flex-col items-start gap-[46px]">
         {/* Header row */}
-        <div className="flex w-full items-center justify-between">
-          <h3 className="w-[428.718px] text-black font-inter text-[40px] font-semibold leading-[48px]">Tin tức</h3>
-          <div className="w-[565px] h-8 flex items-center justify-end gap-6">
+        <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <h3 className="text-black font-inter text-[28px] sm:text-[32px] md:text-[40px] font-semibold leading-[38px] md:leading-[48px]">Tin tức</h3>
+          <div className="h-8 flex items-center justify-start md:justify-end gap-4 md:gap-6 w-full md:w-auto overflow-x-auto whitespace-nowrap">
             {[
               { key: 'latest', label: 'Tin tức mới nhất' },
               { key: 'training', label: 'Đào tạo, chỉ đạo' },
@@ -33,10 +33,12 @@ export default function NewsSection({ theme }: SectionComponentProps) {
               <button
                 key={tab.key}
                 onClick={() => setActiveNewsTab(tab.key as 'latest' | 'training' | 'common')}
-                className={`w-[218.329px] text-center font-[Lexend] text-[18px] leading-[26px] font-semibold transition-colors ${activeNewsTab === tab.key ? '' : 'text-black/60'}`}
-                style={activeNewsTab === tab.key ? { color: primaryColor } : {}}
+                className={`shrink-0 w-[103px] md:w-[218.329px] text-center font-[Lexend] font-semibold transition-colors ${activeNewsTab === tab.key ? 'text-[#017450]' : 'text-black/60]'}`}
+                style={activeNewsTab === tab.key ? { } : {}}
               >
+                <span className="block text-[12px] leading-[15.416px] md:text-[18px] md:leading-[26px]">
                 {tab.label}
+                </span>
               </button>
             ))}
           </div>
