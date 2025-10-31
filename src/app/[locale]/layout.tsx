@@ -124,7 +124,7 @@ export async function generateMetadata({
       siteName: "HealTAG",
       images: [
         {
-          url: `${DOMAIN}/og-image.png`,
+          url: `${DOMAIN}/og-image.png?v=2`,
           width: 1200,
           height: 630,
           alt: t("title"),
@@ -137,7 +137,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [`${DOMAIN}/og-image.png`],
+      images: [`${DOMAIN}/og-image.png?v=2`],
     },
     alternates: {
       canonical: DOMAIN,
