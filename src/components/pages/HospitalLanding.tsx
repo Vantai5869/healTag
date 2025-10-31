@@ -3,6 +3,7 @@ import type { HospitalVariantConfig } from "@/lib/hospitals";
 import { useLandingStore } from "@/store/landingStore";
 import { getSectionComponent } from "@/lib/componentRegistry";
 import { useEffect, useState } from 'react';
+import { motion } from "motion/react";
 
 export default function HospitalLanding({ config }: { config: HospitalVariantConfig }) {
   const { config: landingConfig } = useLandingStore();
@@ -30,24 +31,38 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
         
         if (isFullWidth) {
           return (
-            <SectionComponent
+            <motion.div
               key={section.id}
-              config={config}
-              theme={landingConfig.theme}
-              variant={section.componentVariant}
-            />
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+            >
+              <SectionComponent
+                config={config}
+                theme={landingConfig.theme}
+                variant={section.componentVariant}
+              />
+            </motion.div>
           );
         }
         
         // Container sections
         return (
-          <div key={section.id} className="mx-auto max-w-[1200px]">
+          <motion.div
+            key={section.id}
+            className="mx-auto max-w-[1200px]"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
             <SectionComponent
               config={config}
               theme={landingConfig.theme}
               variant={section.componentVariant}
             />
-          </div>
+          </motion.div>
         );
       })}
     </div>

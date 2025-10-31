@@ -28,6 +28,7 @@ import { useTranslations } from 'next-intl';
 import { SAMPLE_HOSPITALS } from '@/lib/hospitalSamples';
 import { useState, useRef, useEffect } from 'react';
 import { Search } from 'lucide-react';
+import { motion } from "motion/react";
 
 export default function HomeIndex() {
   const tNav = useTranslations('Navigation');
@@ -69,8 +70,18 @@ export default function HomeIndex() {
       {/* Banner/Hero with gradient background */}
       <div className="w-full bg-gradient-to-t from-[#007BFF] to-white">
         <div className="mx-auto flex w-full max-w-[1512px] flex-col items-center gap-8 sm:gap-10 lg:gap-12 pt-6 pb-8 sm:py-[50px] px-4 sm:px-6 lg:px-8">
-          <div className="flex w-full max-w-[1294px] flex-col items-center gap-10 lg:gap-20">
-            <div className="flex w-full max-w-[1294px] items-center justify-between rounded-full bg-white/15 px-3 sm:px-4 py-2 shadow-[0_4px_14px_0_rgba(0,0,0,0.09)] backdrop-blur-[15px] relative">
+          <motion.div 
+            className="flex w-full max-w-[1294px] flex-col items-center gap-10 lg:gap-20"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <motion.div 
+              className="flex w-full max-w-[1294px] items-center justify-between rounded-full bg-white/15 px-3 sm:px-4 py-2 shadow-[0_4px_14px_0_rgba(0,0,0,0.09)] backdrop-blur-[15px] relative"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <div>
                 <Image src="/svgs/Logo.svg" alt={tNav('logoAlt')} width={100.39} height={39.95} className="w-auto h-auto" priority />
               </div>
@@ -127,9 +138,15 @@ export default function HomeIndex() {
                 <NotificationDropdown />
                 <MobileNavDrawer />
               </div>
-            </div>
+            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-12 items-start gap-8 lg:gap-12 w-full max-w-[1294px]">
-              <div className="flex w-full max-w-[770px] flex-col items-start justify-center gap-6 sm:gap-8 lg:gap-12 order-1 md:order-1 md:col-span-7">
+              <motion.div 
+                className="flex w-full max-w-[770px] flex-col items-start justify-center gap-6 sm:gap-8 lg:gap-12 order-1 md:order-1 md:col-span-7"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+              >
                 <div className="flex w-full max-w-[28rem] md:max-w-[32rem] flex-col items-start gap-4">
                   <h1 className="font-black leading-[120%] tracking-[-0.46px] text-3xl sm:text-4xl lg:text-5xl">
                     <span className="text-black">{tHome('searchTitlePart1')}</span>
@@ -141,11 +158,11 @@ export default function HomeIndex() {
                   </p>
                 </div>
                 {/* Image shown above the form when stacked (mobile) */}
-                <div className="relative block md:hidden mt-4 w-full">
+                <motion.div className="relative block md:hidden mt-4 w-full" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                   <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px] mx-auto" priority />
-                </div>
+                </motion.div>
                 {/* Inline form with the left block on md+ */}
-                <div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }}>
+                <motion.div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                   <div className="flex h-[50px] w-full md:flex-1 md:min-w-[250px] items-center justify-center rounded-[8px] bg-white/0">
                     <div className="relative w-full [&>button]:box-border [&>button]:h-[50px] [&>button]:w-full [&>button]:rounded-lg [&>button]:border [&>button]:border-black/10 [&>button]:bg-white [&>button]:px-4 [&>button]:py-0 [&>button]:text-sm [&>button]:leading-none [&>button]:text-black/80">
                       <Select>
@@ -204,19 +221,25 @@ export default function HomeIndex() {
                       <span className="text-center font-bold leading-[32px] tracking-[-0.6px] text-base">{tForm('searchButton')}</span>
                     )}
                   </Link>
-                </div>
-              </div>
-              <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">
+                </motion.div>
+              </motion.div>
+              <motion.div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                 <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px]" priority />
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Hospitals List - new styled block with Swiper */}
-      <HospitalsStyledSection />
-      <HomeMainFeatureSection />
-      <HomeFooter />
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6 }}>
+        <HospitalsStyledSection />
+      </motion.div>
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, delay: 0.05 }}>
+        <HomeMainFeatureSection />
+      </motion.div>
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <HomeFooter />
+      </motion.div>
     </div>
   );
 }
