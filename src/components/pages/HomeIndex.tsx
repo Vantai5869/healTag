@@ -24,20 +24,17 @@ import NotificationDropdown from "@/components/NotificationDropdown";
 import HomeMainFeatureSection from "@/components/pages/HomeMainFeatureSection";
 import HomeFooter from "@/components/pages/HomeFooter";
 import { useTranslations } from 'next-intl';
-import { SAMPLE_HOSPITALS, MiniHospital } from '@/lib/hospitalSamples';
+import { SAMPLE_HOSPITALS } from '@/lib/hospitalSamples';
 import { useState, useRef, useEffect } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Search } from 'lucide-react';
 
 export default function HomeIndex() {
   const tNav = useTranslations('Navigation');
   const tForm = useTranslations('Form');
   const tHome = useTranslations('Home');
-  const tNotif = useTranslations('Notification');
   const tUser = useTranslations('User');
 
   const [searchValue, setSearchValue] = useState('');
-  const [area, setArea] = useState('');
   const [showSuggest, setShowSuggest] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -49,9 +46,8 @@ export default function HomeIndex() {
 
   // Logic filter
   const filtered = SAMPLE_HOSPITALS.filter(h => {
-    const matchArea = !area || (area === 'hn' && h.address.includes('Hà Nội')) || (area === 'hcm' && h.address.includes('TP.HCM')) || (area === 'dn' && h.address.includes('Đà Nẵng'));
     const matchName = !searchValue || h.name.toLowerCase().includes(searchValue.trim().toLowerCase());
-    return matchArea && matchName;
+    return matchName;
   }).slice(0, 10);
 
   useEffect(() => {

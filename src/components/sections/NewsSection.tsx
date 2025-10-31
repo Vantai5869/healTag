@@ -32,7 +32,7 @@ export default function NewsSection({ theme }: SectionComponentProps) {
             ].map((tab) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveNewsTab(tab.key as any)}
+                onClick={() => setActiveNewsTab(tab.key as 'latest' | 'training' | 'common')}
                 className={`w-[218.329px] text-center font-[Lexend] text-[18px] leading-[26px] font-semibold transition-colors ${activeNewsTab === tab.key ? '' : 'text-black/60'}`}
                 style={activeNewsTab === tab.key ? { color: primaryColor } : {}}
               >
