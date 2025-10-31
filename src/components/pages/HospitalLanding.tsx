@@ -1,28 +1,33 @@
 'use client';
 import Image from "next/image";
 import type { HospitalVariantConfig } from "@/lib/hospitals";
-import { Ambulance, Building2, FlaskConical, Pill, Stethoscope, HeartPulse, ShieldPlus, ActivitySquare } from "lucide-react";
+import { Ambulance, Building2, FlaskConical, Pill, Stethoscope, HeartPulse, ShieldPlus, ActivitySquare, Phone, Mail, MapPin } from "lucide-react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function HospitalLanding({ config }: { config: HospitalVariantConfig }) {
+  const doctorImages = ['/imgs/bacsi1-1.png', '/imgs/bacsi1-2.png', '/imgs/bacsi1-3.png'];
   const doctors = [
-    { name: 'PGS Trần Hoài Nam', dept: 'Khoa cấp cứu', img: '/imgs/bacsi-avatar.png' },
-    { name: 'PGS Phạm Thu Hà', dept: 'Khoa cấp cứu', img: '/imgs/bacsi-avatar.png' },
-    { name: 'BS Nguyễn Minh Khoa', dept: 'Khoa tim mạch', img: '/imgs/bacsi-avatar.png' },
-    { name: 'BS Lê Hồng Sơn', dept: 'Khoa hô hấp', img: '/imgs/bacsi-avatar.png' },
-    { name: 'BS Trần Hải Yến', dept: 'Khoa tiêu hoá', img: '/imgs/bacsi-avatar.png' },
-    { name: 'BS Phạm Quang Vũ', dept: 'Khoa ngoại', img: '/imgs/bacsi-avatar.png' },
+    { name: 'PGS Trần Hoài Nam', dept: 'Khoa cấp cứu', img: doctorImages[0] },
+    { name: 'PGS Phạm Thu Hà', dept: 'Khoa cấp cứu', img: doctorImages[1] },
+    { name: 'BS Nguyễn Minh Khoa', dept: 'Khoa tim mạch', img: doctorImages[2] },
+    { name: 'BS Lê Hồng Sơn', dept: 'Khoa hô hấp', img: doctorImages[0] },
+    { name: 'BS Trần Hải Yến', dept: 'Khoa tiêu hoá', img: doctorImages[1] },
+    { name: 'BS Phạm Quang Vũ', dept: 'Khoa ngoại', img: doctorImages[2] },
   ];
 
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
+  const [doctorActive, setDoctorActive] = useState(0);
+  const [doctorSwiper, setDoctorSwiper] = useState<any>(null);
+  const [newsActive, setNewsActive] = useState(0);
+  const [newsSwiper, setNewsSwiper] = useState<any>(null);
   const newsByTab: Record<string, string[]> = {
-    latest: ['/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png'],
-    training: ['/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png'],
-    common: ['/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png', '/imgs/banner-art.png'],
+    latest: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
+    training: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
+    common: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
   };
 
   return (
@@ -69,12 +74,15 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
           </div>
         </div>
         {/* Section 3: Services */}
-        <section className="mt-16">
-          <div className="mx-auto w-full max-w-[1200px] flex flex-col items-center gap-[31px] rounded-lg bg-white shadow-[0_0_4px_0_rgba(0,0,0,0.10)] p-6">
+         <section className="mt-16">
+           <div className="mx-auto w-full max-w-[1200px] flex flex-col items-center gap-[31px] rounded-lg bg-white shadow-[0_0_4px_0_rgba(0,0,0,0.10)] p-6">
             <h3 className="self-stretch text-center text-[#102851] font-inter text-[20px] font-medium leading-none tracking-[0.4px]">
               Dịch vụ chúng tôi cung cấp
             </h3>
-            <div className="flex w-full items-center justify-between">
+             <div
+               className="grid w-full gap-4 sm:gap-5 md:gap-6"
+               style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}
+             >
               {[
                 { label: "Bác sĩ", icon: <Stethoscope className="h-12 w-12 text-[#3A8EF6]" /> },
                 { label: "Phòng nghiên cứu", icon: <FlaskConical className="h-12 w-12 text-[#3A8EF6]" /> },
@@ -82,7 +90,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
                 { label: "Thuốc", icon: <Pill className="h-12 w-12 text-[#3A8EF6]" /> },
                 { label: "Xe cứu thương", icon: <Ambulance className="h-12 w-12 text-[#3A8EF6]" /> },
               ].map((item) => (
-                <div key={item.label} className="flex w-[203px] h-[153px] flex-col items-center justify-center rounded-xl bg-[#F6F9FF]">
+                 <div key={item.label} className="flex h-[153px] flex-col items-center justify-center rounded-xl bg-[#F6F9FF]">
                   {item.icon}
                   <span className="mt-4 text-center text-[#ABB6C7] font-inter text-[18px] font-normal leading-none tracking-[0.36px]">
                     {item.label}
@@ -98,7 +106,10 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
             <h3 className="self-stretch text-center text-[#1B3C74] font-inter text-[32px] font-semibold leading-[67px] capitalize">
               Chuyên khoa nổi bật
             </h3>
-            <div className="flex w-full flex-wrap items-start justify-between gap-6">
+            <div
+              className="w-full grid gap-4 sm:gap-5 md:gap-6 justify-items-stretch"
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}
+            >
               {[
                 { label: "Trung tâm cấp cứu A9", icon: <Building2 className="h-14 w-14 text-[#3A8EF6]" /> },
                 { label: "Trung tâm Phẫu thuật tiêu hoá", icon: <Stethoscope className="h-14 w-14 text-[#3A8EF6]" /> },
@@ -109,7 +120,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
                 { label: "Trung tâm phẫu thuật", icon: <Building2 className="h-14 w-14 text-[#3A8EF6]" /> },
                 { label: "Trung tâm xương khớp", icon: <ActivitySquare className="h-14 w-14 text-[#3A8EF6]" /> },
               ].map((item) => (
-                <div key={item.label} className="flex w-[270px] p-6 justify-between items-start rounded-[10px] bg-white shadow-[0_34px_44px_0_rgba(213,219,228,0.44)]">
+                <div key={item.label} className="flex w-full p-6 justify-between items-start rounded-[10px] bg-white shadow-[0_34px_44px_0_rgba(213,219,228,0.44)]">
                   <div className="flex h-[136px] flex-col items-center gap-2 mx-auto">
                     {item.icon}
                     <span className="w-[121px] h-[36px] shrink-0 text-center text-[#ABB6C7] font-inter text-[14px] font-medium leading-[22px]">
@@ -122,47 +133,62 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
           </div>
         </section>
       </div>
-      {/* Section 5: Doctors carousel - full width up to 1438px */}
+      {/* Section 5: Doctors carousel - Swiper with stable sizing and preloading */}
       <section className="mt-16">
         <div className="mx-auto w-full max-w-[1438px]">
           <h3 className="text-center text-[#1B3C74] font-inter text-[28px] md:text-[32px] font-semibold mb-6">Đội ngũ bác sĩ</h3>
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={16}
-            breakpoints={{
-              0: { slidesPerView: 1 },
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 4 },
-            }}
+           <Swiper
+             modules={[Pagination]}
+             pagination={false}
+            spaceBetween={0}
+            slidesPerView={'auto'}
+            loop={false}
+             className="px-2 md:px-4"
+             onSwiper={(s) => setDoctorSwiper(s)}
+             onSlideChange={(s) => setDoctorActive(s.activeIndex)}
           >
             {doctors.map((d, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="flex flex-col items-center">
-                  <div className="w-[260px] h-[260px] rounded-full bg-gradient-to-b from-white to-[#CFE6FF] p-2 shadow-sm">
-                    <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#A9D6FF] to-[#6CB2FF] flex items-center justify-center">
-                      <Image src={d.img} alt={d.name} width={240} height={240} className="rounded-full object-cover" />
+              <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
+                <div className="flex w-[370px] flex-col items-start gap-[15px]">
+                  {/* Image wrapper with fixed box to avoid CLS */}
+                  <div className="flex h-[414px] p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
+                    <div className="relative w-[350px] h-[394px]">
+                      <Image src={d.img} alt={d.name} fill className="object-contain" />
                     </div>
                   </div>
-                  <div className="mt-4 text-center">
-                    <div className="text-[#1B3C74] font-medium">{d.name}</div>
-                    <div className="text-[#3A8EF6] text-sm mt-1">{d.dept}</div>
+                  {/* Text block */}
+                  <div className="flex w-[370px] flex-col items-center gap-[1px]">
+                    <div className="self-stretch text-[#1B3C74] text-center font-inter text-[24px] font-[400] leading-[48px]">
+                      {d.name}
+                    </div>
+                    <div className="self-stretch text-[#3A8EF6] text-center font-inter text-[16px] font-[500] leading-[27px]">
+                      {d.dept}
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+           <div className="mt-5 flex items-center justify-center gap-2">
+             {doctors.map((_, i) => (
+               <button
+                 key={i}
+                 aria-label={`Go to slide ${i + 1}`}
+                 onClick={() => doctorSwiper?.slideTo(i)}
+                 className={`h-2.5 w-2.5 rounded-full transition-colors ${doctorActive === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
+               />
+             ))}
+           </div>
         </div>
       </section>
 
-      {/* Section 6: News with tabs (moved below doctors) */}
+      {/* Section 6: News with tabs (responsive like dev) */}
       <section className="mt-16">
         <div className="mx-auto w-full max-w-[1200px] flex flex-col items-start gap-[46px]">
           {/* Header row */}
-          <div className="flex w-full items-center justify-between">
-            <h3 className="w-[428.718px] text-black font-inter text-[40px] font-semibold leading-[48px]">Tin tức</h3>
-            <div className="w-[565px] h-8 flex items-center justify-end gap-6">
+          <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <h3 className="text-black font-inter text-[28px] sm:text-[32px] md:text-[40px] font-semibold leading-[38px] md:leading-[48px] whitespace-nowrap">Tin tức</h3>
+            <div className="h-12 flex items-end justify-start md:justify-end gap-4 md:gap-[60px] w-full md:w-auto overflow-x-auto whitespace-nowrap">
               {[
                 { key: 'latest', label: 'Tin tức mới nhất' },
                 { key: 'training', label: 'Đào tạo, chỉ đạo' },
@@ -171,46 +197,92 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
                 <button
                   key={tab.key}
                   onClick={() => setActiveNewsTab(tab.key as any)}
-                  className={`w-[218.329px] text-center font-[Lexend] text-[18px] leading-[26px] font-semibold transition-colors ${activeNewsTab === tab.key ? 'text-[#3A8EF6]' : 'text-black/60'}`}
+                  className={`shrink-0 flex flex-col items-center justify-end text-center transition-colors ${activeNewsTab === tab.key ? 'text-[#3A8EF6]' : 'text-black/60'}`}
+                  style={{ fontFamily: 'Lexend', fontWeight: 600, lineHeight: activeNewsTab === tab.key ? '26px' as any : undefined, fontSize: activeNewsTab === tab.key ? 18 : undefined }}
                 >
-                  {tab.label}
+                  <span className="block text-[12px] leading-[15.416px] md:text-[18px] md:leading-[26px]">{tab.label}</span>
+                  <span
+                    className={`mt-2 hidden md:block h-[2px] w-[106.708px] ${activeNewsTab === tab.key ? 'bg-[#3A8EF6]' : 'bg-transparent'}`}
+                    aria-hidden
+                  />
                 </button>
               ))}
             </div>
           </div>
-          {/* Slider */}
+          {/* Slider - images only */}
           <Swiper
             key={activeNewsTab}
             modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={24}
+            pagination={false}
+            spaceBetween={0}
+            slidesPerView={'auto'}
             autoHeight={false}
-            observer={true}
-            observeParents={true}
+            observer
+            observeParents
             observeSlideChildren={false}
-            resizeObserver={true}
-            className="w-full [&_.swiper-pagination]:mt-6"
-            breakpoints={{
-              0: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1280: { slidesPerView: 3 },
-            }}
+            resizeObserver
+            className="w-full"
+            onSwiper={(s) => setNewsSwiper(s)}
+            onSlideChange={(s) => setNewsActive(s.activeIndex)}
             loop
           >
             {newsByTab[activeNewsTab].map((src, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="rounded-2xl overflow-hidden bg-white shadow-md w-full">
-                  <div className="relative w-full aspect-[16/9] min-w-0">
-                    <Image src={src} alt={`news-${activeNewsTab}-${idx}`} fill className="object-cover" />
-                  </div>
+              <SwiperSlide key={idx} className="!w-auto mr-4 last:mr-0">
+                <div className="relative w-[380px] h-[199.149px] overflow-hidden rounded-[12px] bg-white shadow-[0_12px_24px_-12px_rgba(0,0,0,0.12)]">
+                  <Image src={src} alt={`news-${activeNewsTab}-${idx}`} fill className="object-cover" />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="mt-5 w-full flex items-center justify-center gap-2">
+            {newsByTab[activeNewsTab].map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Go to slide ${i + 1}`}
+                onClick={() => newsSwiper?.slideTo(i)}
+                className={`h-2.5 w-2.5 rounded-full transition-colors ${newsActive === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Section 7: Hospital contact card */}
+      <section className="mt-16">
+        <div className="mx-auto w-full max-w-[1200px] shadow-[0_0_4px_0_rgba(0,0,0,0.10)] bg-white rounded-[12px] overflow-hidden p-6 md:p-8">
+          <div className="w-full flex flex-col md:flex-row items-stretch gap-6">
+            {/* Left image */}
+            <div
+              className="w-full h-[339.623px] md:w-[330.566px] md:h-[339.623px] shrink-0 rounded-[22.642px] bg-no-repeat bg-cover bg-center"
+              style={{ backgroundImage: "url('/imgs/benh-vien-1.png')" }}
+            />
+            {/* Right text */}
+            <div className="flex-1 flex flex-col gap-6 justify-center">
+              <div className="text-black/90" style={{ fontFamily: 'Lato', fontSize: '36.226px', fontWeight: 900, lineHeight: 'normal' }}>
+                Bệnh viện Bạch Mai
+              </div>
+              <div className="flex flex-col gap-6" style={{ color: 'rgba(0,0,0,0.87)', fontFamily: 'Lato', fontSize: '36.226px', fontWeight: 400, lineHeight: 'normal' }}>
+                <div className="flex flex-col md:flex-row md:items-center gap-y-3 gap-x-12">
+                  <div className="flex items-center gap-4">
+                    <Phone className="h-8 w-8 text-[#21C55D]" />
+                    <span>0989989899</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Mail className="h-8 w-8 text-[#1D4ED8]" />
+                    <span>bachmai@gmail.com</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-8 w-8 text-[#EF2B67] mt-1" />
+                  <span>78 Đường Giải Phóng, Phường Kim Liên, Thành phố Hà Nội</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
 }
+
 
 
