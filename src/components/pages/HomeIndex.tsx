@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -183,14 +184,17 @@ export default function HomeIndex() {
                                 <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
                                 <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
                               </div>
-                              <button className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer">Đặt lịch ngay</button>
+                              <Link href={`/hospitals/${hospital.slug}`} className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer">
+                                Đặt lịch ngay
+                              </Link>
                             </div>
                           ))
                         )}
                       </div>
                     )}
                   </div>
-                  <button
+                  <Link
+                    href="/hospitals/bach-mai"
                     className={btnAnimWidthClass + " h-[50px] px-3"}
                     style={{ backgroundImage: "linear-gradient(90deg, #51C0FF 0%, #007BFF 100%)" }}
                   >
@@ -199,7 +203,7 @@ export default function HomeIndex() {
                     ) : (
                       <span className="text-center font-bold leading-[32px] tracking-[-0.6px] text-base">{tForm('searchButton')}</span>
                     )}
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">

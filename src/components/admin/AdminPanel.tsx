@@ -15,12 +15,20 @@ export default function AdminPanel() {
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
 
   // Avoid hydration mismatches due to localStorage-backed store and dnd-kit SSR
+  // mark mounted once
   useEffect(() => {
     setMounted(true);
-    if (config.sections.length > 0) {
-      setSelectedSectionId(config.sections.sort((a, b) => a.order - b.order)[0].id);
-    }
-  }, [config.sections]);
+  }, []);
+
+  // set or preserve selection when sections change
+  useEffect(() => {
+    if (!config.sections || config.sections.length === 0) return;
+    // keep current selection if it still exists
+    if (selectedSectionId && config.sections.find(s => s.id === selectedSectionId)) return;
+    // otherwise, pick first by order
+    const first = [...config.sections].sort((a, b) => a.order - b.order)[0]?.id;
+    if (first) setSelectedSectionId(first);
+  }, [config.sections, selectedSectionId]);
 
   if (!mounted) return null;
 
