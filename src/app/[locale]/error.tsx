@@ -4,7 +4,8 @@ import { ServerCrash } from "lucide-react";
 import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Error({
   error,
@@ -17,6 +18,7 @@ export default function Error({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
+  const t = useTranslations("error");
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center">
@@ -24,17 +26,19 @@ export default function Error({
         <ServerCrash className="w-10 h-10 text-red-600" />
       </div>
       <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Something went wrong
+        {t("title")}
       </h1>
-      <p className="mb-8 text-lg text-gray-600">Please try again or go back home.</p>
+      <p className="mb-8 text-lg text-gray-600">{t("sorry")}</p>
       <div className="flex flex-col gap-4 sm:flex-row">
         <Button onClick={() => reset()} variant="default">
-          Try again
+          {t("tryAgain")}
         </Button>
         <Button variant="outline" asChild>
-          <Link href="/">Return home</Link>
+          <Link href="/">{t("returnHome")}</Link>
         </Button>
       </div>
     </div>
   );
 }
+
+
