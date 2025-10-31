@@ -5,10 +5,29 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function NewsSection() {
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [isNarrow, setIsNarrow] = useState(false);
+
+  useEffect(() => {
+    function measure() {
+      const el = rootRef.current;
+      const w = el?.offsetWidth || 0;
+      const forced = el?.closest('.force-stack');
+      setIsNarrow(!!forced || (w > 0 && w < 768));
+    }
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (rootRef.current) ro.observe(rootRef.current);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
   const newsByTab: Record<string, string[]> = {
     latest: ['/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png'],
     training: ['/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png', '/imgs/tin-tuc.png'],
@@ -18,11 +37,11 @@ export default function NewsSection() {
 
   return (
     <section className="mt-16">
-      <div className="mx-auto w-full max-w-[1200px] flex flex-col items-start gap-[46px]">
+      <div ref={rootRef} className="mx-auto w-full max-w-[1200px] flex flex-col items-start gap-[46px]">
         {/* Header row */}
-        <div className="flex w-full flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <h3 className="text-black font-inter text-[28px] sm:text-[32px] md:text-[40px] font-semibold leading-[38px] md:leading-[48px]">Tin tức</h3>
-          <div className="h-8 flex items-center justify-start md:justify-end gap-4 md:gap-6 w-full md:w-auto overflow-x-auto whitespace-nowrap">
+        <div className={`flex w-full ${isNarrow ? 'flex-col' : 'flex-row items-center justify-between'} gap-3`}>
+          <h3 className={`text-black font-inter ${isNarrow ? 'text-[28px] leading-[38px]' : 'text-[40px] leading-[48px]'} font-semibold whitespace-nowrap`}>Tin tức</h3>
+          <div className={`h-8 flex items-center ${isNarrow ? 'justify-start' : 'justify-end'} gap-4 md:gap-6 w-full md:w-auto overflow-x-auto whitespace-nowrap`}>
             {[
               { key: 'latest', label: 'Tin tức mới nhất' },
               { key: 'training', label: 'Đào tạo, chỉ đạo' },
@@ -31,10 +50,10 @@ export default function NewsSection() {
               <button
                 key={tab.key}
                 onClick={() => setActiveNewsTab(tab.key as 'latest' | 'training' | 'common')}
-                className={`shrink-0 w-[103px] md:w-[218.329px] text-center font-[Lexend] font-semibold transition-colors ${activeNewsTab === tab.key ? 'text-[#017450]' : 'text-black/60]'}`}
-                style={activeNewsTab === tab.key ? { } : {}}
+                className={`shrink-0 ${isNarrow ? 'w-[103px]' : 'w-[218.329px]'} text-center font-semibold transition-colors ${activeNewsTab === tab.key ? 'text-[#017450]' : 'text-black/60'}`}
+                style={{ fontFamily: 'Lexend', fontWeight: 600 }}
               >
-                <span className="block text-[12px] leading-[15.416px] md:text-[18px] md:leading-[26px]">
+                <span className={`block ${isNarrow ? 'text-[12px] leading-[15.416px]' : 'text-[18px] leading-[26px]'}`}>
                 {tab.label}
                 </span>
               </button>
@@ -46,18 +65,14 @@ export default function NewsSection() {
           key={activeNewsTab}
           modules={[Pagination]}
           pagination={{ clickable: true }}
-          spaceBetween={24}
+          spaceBetween={16}
+          slidesPerView={'auto'}
           autoHeight={false}
-          observer={true}
-          observeParents={true}
+          observer
+          observeParents
           observeSlideChildren={false}
-          resizeObserver={true}
+          resizeObserver
           className="w-full [&_.swiper-pagination]:mt-6"
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1280: { slidesPerView: 3 },
-          }}
           loop
         >
           {newsByTab[activeNewsTab].map((src, idx) => (

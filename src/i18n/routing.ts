@@ -11,5 +11,5 @@ export const routing = defineRouting({
   localeDetection: false,
   
   // Remove locale prefix from URL for cleaner URLs
-  localePrefix: "never",
+  localePrefix: "always",
 });

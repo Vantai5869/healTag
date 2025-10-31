@@ -99,7 +99,7 @@ export default function AdminPanel() {
               <SectionList selectedSectionId={selectedSectionId} onSelectSection={setSelectedSectionId} />
             </div>
             <div>
-              <div className="bg-white rounded-lg shadow p-6 sticky top-20">
+              <div className="bg-white rounded-lg shadow p-6 sticky top-20 min-w-0">
                 <h2 className="text-xl font-semibold mb-4">Thư viện Component</h2>
                 <ComponentGallery selectedSectionId={selectedSectionId} />
               </div>
