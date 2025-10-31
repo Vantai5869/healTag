@@ -1,5 +1,3 @@
-'use client';
-
 import AdminPanel from "@/components/admin/AdminPanel";
 import type { Metadata } from 'next';
 
