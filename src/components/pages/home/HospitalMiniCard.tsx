@@ -22,7 +22,15 @@ export default function HospitalMiniCard({ hospital }: { hospital: MiniHospital 
       <div className="flex items-start gap-[10px] self-stretch pr-3">
         {/* Left logo 50x50 */}
         <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-black/5 bg-white">
-          <Image src={hospital.logo ?? "/svgs/Logo.svg"} alt={t("logoAlt", { name: hospital.name })} width={50} height={50} className="h-[50px] w-[50px] object-contain" />
+          <Image 
+            src={hospital.logo ?? "/svgs/Logo.svg"} 
+            alt={t("logoAlt", { name: hospital.name })} 
+            width={50} 
+            height={50} 
+            className="h-[50px] w-[50px] object-contain" 
+            sizes="50px"
+            loading="lazy"
+          />
         </div>
         {/* Right text block */}
         <div className="flex min-w-0 flex-1 flex-col items-start gap-2">

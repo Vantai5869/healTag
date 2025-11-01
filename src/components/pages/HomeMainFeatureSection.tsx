@@ -1,5 +1,6 @@
 'use client';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 const SERVICE_IMAGES = {
   specialist: "/svgs/home3-img2.svg",
@@ -54,7 +55,9 @@ export default function HomeMainFeatureSection() {
             style={{ borderWidth: 0.5 }}
           >
             {/* Top illustration: wide, full-width style */}
-            <img src="/svgs/home3-img1.svg" className="w-full h-auto mb-3" alt="intro-illustration" />
+            <div className="relative w-full aspect-video mb-3">
+              <Image src="/svgs/home3-img1.svg" fill className="object-contain" alt="intro-illustration" sizes="(max-width: 1280px) 100vw, 400px" loading="lazy" />
+            </div>
             {/* Text block for intro */}
             <div className="flex flex-col items-start gap-3 w-full">
               <span className="font-medium text-[24px] leading-[130%] tracking-[-1.44px] text-[#333]" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -75,7 +78,9 @@ export default function HomeMainFeatureSection() {
                   className="flex flex-col items-start gap-4 p-4 rounded-[16px] border border-white border-opacity-50 bg-[rgba(255,255,255,0.10)] shadow-xl backdrop-blur-[10px] transition"
                   style={{ boxShadow: '1px 2px 30px 0 rgba(0,0,0,0.10)' }}
                 >
-                  <img src={imgSrc} alt={key} className="w-full h-auto mb-2" />
+                  <div className="relative w-full aspect-square mb-2">
+                    <Image src={imgSrc} fill className="object-contain" alt={key} sizes="(max-width: 1024px) 50vw, 33vw" loading="lazy" />
+                  </div>
                   <div className="flex flex-col items-start gap-2 w-full break-words">
                     <div
                       className="font-semibold text-[16px] leading-[140%] tracking-[-0.96px] text-[#333] mb-0"

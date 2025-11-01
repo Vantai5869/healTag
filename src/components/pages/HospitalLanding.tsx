@@ -37,20 +37,29 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
         {/* Header section */}
         <div className="flex items-center w-full pr-0 rounded-lg bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] backdrop-blur-sm">
           <div className="flex items-center gap-x-3 p-4">
-            <Image src="/svgs/benhvien-logo.svg" alt="Hospital Logo" width={50} height={50} />
+            <Image src="/svgs/benhvien-logo.svg" alt="Hospital Logo" width={50} height={50} priority sizes="50px" />
             <span className="text-white font-inter text-2xl sm:text-3xl font-bold leading-tight tracking-tight -ml-[2px]">
               {config.name}
             </span>
           </div>
           <div className="ml-auto">
-            <Image src="/svgs/history-list.svg" alt="History Icon" width={80} height={63} className="h-auto" />
+            <Image src="/svgs/history-list.svg" alt="History Icon" width={80} height={63} className="h-auto" style={{ width: 'auto', height: 'auto' }} priority sizes="80px" />
           </div>
         </div>
         {/* Section 2: Responsive Hero */}
         <div className="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between mt-8 gap-4 md:gap-10">
           {/* Left image */}
           <div className="w-full max-w-[487px] mb-6 md:mb-0">
-            <Image src="/imgs/doctor-banner.png" alt="Doctor Banner" width={487} height={612} priority style={{ width: '100%', height: 'auto' }} />
+            <Image 
+              src="/imgs/doctor-banner.png" 
+              alt="Doctor Banner" 
+              width={487} 
+              height={612} 
+              priority 
+              sizes="(max-width: 768px) 100vw, 487px"
+              className="w-full h-auto"
+              style={{ width: '100%', height: 'auto' }} 
+            />
           </div>
           {/* Right content */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-8 md:gap-10 w-full md:w-auto">
@@ -154,7 +163,14 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
                   {/* Image wrapper with fixed box to avoid CLS */}
                   <div className="flex h-[414px] p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
                     <div className="relative w-[350px] h-[394px]">
-                      <Image src={d.img} alt={d.name} fill className="object-contain" />
+                      <Image 
+                        src={d.img} 
+                        alt={d.name} 
+                        fill 
+                        className="object-contain" 
+                        sizes="350px"
+                        loading={idx < 2 ? "eager" : "lazy"}
+                      />
                     </div>
                   </div>
                   {/* Text block */}
@@ -230,7 +246,14 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
             {newsByTab[activeNewsTab].map((src, idx) => (
               <SwiperSlide key={idx} className="!w-auto mr-4 last:mr-0">
                 <div className="relative w-[380px] h-[199.149px] overflow-hidden rounded-[12px] bg-white shadow-[0_12px_24px_-12px_rgba(0,0,0,0.12)]">
-                  <Image src={src} alt={`news-${activeNewsTab}-${idx}`} fill className="object-cover" />
+                  <Image 
+                    src={src} 
+                    alt={`news-${activeNewsTab}-${idx}`} 
+                    fill 
+                    className="object-cover" 
+                    sizes="380px"
+                    loading={idx < 2 ? "eager" : "lazy"}
+                  />
                 </div>
               </SwiperSlide>
             ))}
@@ -252,10 +275,16 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
         <div className="mx-auto w-full max-w-[1200px] shadow-[0_0_4px_0_rgba(0,0,0,0.10)] bg-white rounded-[12px] overflow-hidden p-6 md:p-8">
           <div className="w-full flex flex-col md:flex-row items-stretch gap-6">
             {/* Left image */}
-            <div
-              className="w-full h-[339.623px] md:w-[330.566px] md:h-[339.623px] shrink-0 rounded-[22.642px] bg-no-repeat bg-cover bg-center"
-              style={{ backgroundImage: "url('/imgs/benh-vien-1.png')" }}
-            />
+            <div className="w-full h-[339.623px] md:w-[330.566px] md:h-[339.623px] shrink-0 rounded-[22.642px] overflow-hidden relative">
+              <Image
+                src="/imgs/benh-vien-1.png"
+                alt="Bệnh viện"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 330px"
+                loading="lazy"
+              />
+            </div>
             {/* Right text */}
             <div className="flex-1 flex flex-col gap-6 justify-center">
               <div className="text-black/90" style={{ fontFamily: 'Lato', fontSize: '36.226px', fontWeight: 900, lineHeight: 'normal' }}>

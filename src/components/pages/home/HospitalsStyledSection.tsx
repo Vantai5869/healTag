@@ -20,12 +20,12 @@ export default function HospitalsStyledSection() {
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 mt-16 mb-6">
       <div className="rounded-2xl bg-white flex w-full max-w-[1200px] flex-col items-start gap-6 sm:gap-8">
-        <div className="relative flex items-center justify-between self-stretch rounded-[8px] bg-gradient-to-r from-[#007BFF] to-[#004A99] p-4 backdrop-blur-[5px]">
+        <div className="relative flex items-center justify-between self-stretch rounded-[8px] bg-gradient-to-r from-[#007BFF] to-[#004A99] p-4 backdrop-blur-[5px] min-h-[63px]">
           <p className="text-white" style={{ fontFamily: "Inter", fontSize: 18, fontWeight: 500, lineHeight: "140%", letterSpacing: "-1.08px" }}>
             {t("title")}
           </p>
-          <div className="">
-            <Image src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} width={80} height={63} className="w-auto h-full" />
+          <div className="flex-shrink-0 h-[63px] flex items-center">
+            <Image src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} width={80} height={63} className="w-auto h-full" priority />
           </div>
         </div>
 

@@ -37,7 +37,36 @@ description: Next.js + TypeScript + shadcn/ui frontend rules and structure guida
 ## Performance
 - Memoize heavy components and callbacks (memo, useMemo, useCallback).
 - Code split large feature routes; lazy-load non-critical components.
-- Optimize images; use Next Image.
+
+## Image Optimization (PNG, SVG, WebP)
+- **Always use Next.js Image component** - Never use `<img>` tag for static images.
+- **PNG/JPEG Optimization:**
+  - Next.js automatically converts to WebP/AVIF (configured in `next.config.ts`).
+  - Always provide explicit `width` and `height` props to prevent layout shift (CLS).
+  - Use `sizes` attribute for responsive images: `sizes="(max-width: 768px) 100vw, 500px"`.
+  - Use `priority` prop for above-the-fold images (hero, logos).
+  - Use `loading="lazy"` for below-the-fold images (default, but be explicit).
+- **SVG Optimization:**
+  - Use Next.js Image component for SVG files (not inline `<svg>` unless tiny).
+  - Run `yarn svg:optimize` to minify SVG files using SVGO.
+  - Always provide `width` and `height` props for SVG images.
+  - Add `sizes` attribute for responsive SVG: `sizes="80px"` or responsive breakpoints.
+- **Prevent Layout Shift (CLS):**
+  - Always set `width` and `height` props on Image component.
+  - When using CSS to modify size, add `style={{ width: 'auto', height: 'auto' }}` or `className="w-full h-auto"` to maintain aspect ratio.
+  - Use `fill` prop with parent container having fixed dimensions for responsive images.
+  - Set `min-height` on containers that hold images to reserve space.
+  - Never modify only width or height via CSS without corresponding aspect ratio handling.
+- **Image Configuration:**
+  - Configure formats in `next.config.ts`: `formats: ['image/avif', 'image/webp']`.
+  - Device sizes should match breakpoints: `[640, 750, 828, 1080, 1200, 1920]`.
+  - Set appropriate `imageSizes` for icon sizes: `[16, 32, 48, 64, 96, 128, 256, 384]`.
+- **Best Practices:**
+  - Convert large PNG files to WebP manually if needed (use tools or Next.js automatic conversion).
+  - Optimize SVG files before committing: `yarn svg:optimize`.
+  - Use appropriate image dimensions - don't load 2000px images for 200px displays.
+  - For backgrounds, prefer CSS `background-image` with optimized images, or use Image component with `fill`.
+  - Test layout shift using Chrome DevTools Lighthouse (CLS score < 0.1).
 
 ## Observability
 - Add client-side logging for important actions; avoid PII in logs.
