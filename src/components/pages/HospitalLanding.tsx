@@ -7,7 +7,6 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useState } from 'react';
-import type { Swiper as SwiperType } from 'swiper';
 import HospitalTitleBar from "./HospitalTitleBar";
 import HospitalContactCard from "./HospitalContactCard";
 
@@ -23,10 +22,6 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
   ];
 
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
-  const [doctorActive, setDoctorActive] = useState(0);
-  const [doctorSwiper, setDoctorSwiper] = useState<SwiperType | null>(null);
-  const [newsActive, setNewsActive] = useState(0);
-  const [newsSwiper, setNewsSwiper] = useState<SwiperType | null>(null);
   const newsByTab: Record<string, string[]> = {
     latest: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
     training: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
@@ -145,13 +140,13 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
           <h3 className="text-center text-[#1B3C74] font-inter text-[28px] md:text-[32px] font-semibold mb-6">Đội ngũ bác sĩ</h3>
            <Swiper
              modules={[Pagination]}
-             pagination={false}
+             pagination={{
+               clickable: true,
+             }}
             spaceBetween={0}
             slidesPerView={'auto'}
             loop={false}
              className="px-2 md:px-4"
-             onSwiper={(s) => setDoctorSwiper(s)}
-             onSlideChange={(s) => setDoctorActive(s.activeIndex)}
           >
             {doctors.map((d, idx) => (
               <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
@@ -182,16 +177,6 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               </SwiperSlide>
             ))}
           </Swiper>
-           <div className="mt-5 flex items-center justify-center gap-2">
-             {doctors.map((_, i) => (
-               <button
-                 key={i}
-                 aria-label={`Go to slide ${i + 1}`}
-                 onClick={() => doctorSwiper?.slideTo(i)}
-                 className={`h-2.5 w-2.5 rounded-full transition-colors ${doctorActive === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
-               />
-             ))}
-           </div>
         </div>
       </section>
 
@@ -226,7 +211,9 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
           <Swiper
             key={activeNewsTab}
             modules={[Pagination]}
-            pagination={false}
+            pagination={{
+              clickable: true,
+            }}
             spaceBetween={0}
             slidesPerView={'auto'}
             autoHeight={false}
@@ -235,8 +222,6 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
             observeSlideChildren={false}
             resizeObserver
             className="w-full"
-            onSwiper={(s) => setNewsSwiper(s)}
-            onSlideChange={(s) => setNewsActive(s.activeIndex)}
             loop
           >
             {newsByTab[activeNewsTab].map((src, idx) => (
@@ -254,16 +239,6 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="mt-5 w-full flex items-center justify-center gap-2">
-            {newsByTab[activeNewsTab].map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => newsSwiper?.slideTo(i)}
-                className={`h-2.5 w-2.5 rounded-full transition-colors ${newsActive === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
-              />
-            ))}
-          </div>
         </div>
       </section>
       {/* Section 7: Hospital contact card */}

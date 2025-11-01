@@ -9,7 +9,6 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useState } from 'react';
-import type { Swiper as SwiperType } from 'swiper';
 
 interface SpecializedUnit {
   name: string;
@@ -130,10 +129,6 @@ const newsItems: News[] = [
 ];
 
 export default function HospitalLanding2({ config }: { config: HospitalVariantConfig }) {
-  const [doctorSwiper, setDoctorSwiper] = useState<SwiperType | null>(null);
-  const [doctorActive, setDoctorActive] = useState(0);
-  const [newsSwiper, setNewsSwiper] = useState<SwiperType | null>(null);
-  const [newsActive, setNewsActive] = useState(0);
 
   if (!config) {
     return null;
@@ -470,13 +465,15 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
           <div className="w-full mt-6">
             <Swiper
               modules={[Pagination]}
-              pagination={false}
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet swiper-pagination-bullet-landing2',
+                bulletActiveClass: 'swiper-pagination-bullet-active swiper-pagination-bullet-active-landing2',
+              }}
               spaceBetween={0}
               slidesPerView={'auto'}
               loop={false}
               className="px-2 md:px-4"
-              onSwiper={(s) => setDoctorSwiper(s)}
-              onSlideChange={(s) => setDoctorActive(s.activeIndex)}
             >
               {doctors.map((doctor, idx) => (
                 <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
@@ -553,18 +550,6 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                 </SwiperSlide>
               ))}
             </Swiper>
-
-            {/* Pagination dots */}
-            <div className="mt-5 flex items-center justify-center gap-2">
-              {doctors.map((_, i) => (
-                <button
-                  key={i}
-                  aria-label={`Go to slide ${i + 1}`}
-                  onClick={() => doctorSwiper?.slideTo(i)}
-                  className={`h-2.5 w-2.5 rounded-full transition-colors ${doctorActive === i ? 'bg-[#FA843A]' : 'bg-slate-300'}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -606,13 +591,15 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
           <div className="w-full mt-6">
             <Swiper
               modules={[Pagination]}
-              pagination={false}
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet swiper-pagination-bullet-landing2',
+                bulletActiveClass: 'swiper-pagination-bullet-active swiper-pagination-bullet-active-landing2',
+              }}
               spaceBetween={0}
               slidesPerView={'auto'}
               loop={false}
               className="px-2 md:px-4"
-              onSwiper={(s) => setNewsSwiper(s)}
-              onSlideChange={(s) => setNewsActive(s.activeIndex)}
             >
               {newsItems.map((news, idx) => (
                 <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
@@ -680,18 +667,6 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                 </SwiperSlide>
               ))}
             </Swiper>
-
-            {/* Pagination dots */}
-            <div className="mt-5 flex items-center justify-center gap-2">
-              {newsItems.map((_, i) => (
-                <button
-                  key={i}
-                  aria-label={`Go to slide ${i + 1}`}
-                  onClick={() => newsSwiper?.slideTo(i)}
-                  className={`h-2.5 w-2.5 rounded-full transition-colors ${newsActive === i ? 'bg-[#FA843A]' : 'bg-slate-300'}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
