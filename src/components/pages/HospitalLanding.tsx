@@ -6,7 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
 
 export default function HospitalLanding({ config }: { config: HospitalVariantConfig }) {
   const doctorImages = ['/imgs/bacsi1-1.png', '/imgs/bacsi1-2.png', '/imgs/bacsi1-3.png'];
@@ -21,9 +22,9 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
 
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
   const [doctorActive, setDoctorActive] = useState(0);
-  const [doctorSwiper, setDoctorSwiper] = useState<any>(null);
+  const [doctorSwiper, setDoctorSwiper] = useState<SwiperType | null>(null);
   const [newsActive, setNewsActive] = useState(0);
-  const [newsSwiper, setNewsSwiper] = useState<any>(null);
+  const [newsSwiper, setNewsSwiper] = useState<SwiperType | null>(null);
   const newsByTab: Record<string, string[]> = {
     latest: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
     training: ['/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png', '/imgs/tintuc1-1.png', '/imgs/tintuc1-2.png', '/imgs/tintuc1-3.png'],
@@ -196,9 +197,9 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               ].map((tab) => (
                 <button
                   key={tab.key}
-                  onClick={() => setActiveNewsTab(tab.key as any)}
+                  onClick={() => setActiveNewsTab(tab.key as 'latest' | 'training' | 'common')}
                   className={`shrink-0 flex flex-col items-center justify-end text-center transition-colors ${activeNewsTab === tab.key ? 'text-[#3A8EF6]' : 'text-black/60'}`}
-                  style={{ fontFamily: 'Lexend', fontWeight: 600, lineHeight: activeNewsTab === tab.key ? '26px' as any : undefined, fontSize: activeNewsTab === tab.key ? 18 : undefined }}
+                  style={{ fontFamily: 'Lexend', fontWeight: 600, lineHeight: activeNewsTab === tab.key ? '26px' : undefined, fontSize: activeNewsTab === tab.key ? 18 : undefined }}
                 >
                   <span className="block text-[12px] leading-[15.416px] md:text-[18px] md:leading-[26px]">{tab.label}</span>
                   <span

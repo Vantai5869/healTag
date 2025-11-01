@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import HospitalMiniCard from "@/components/pages/home/HospitalMiniCard";
 import type { MiniHospital } from "@/components/pages/home/HospitalMiniCard";
@@ -13,7 +14,7 @@ export default function HospitalsStyledSection() {
   const items = SAMPLE_HOSPITALS;
   const pages: MiniHospital[][] = [];
   for (let i = 0; i < items.length; i += 6) pages.push(items.slice(i, i + 6));
-  const [swiper, setSwiper] = useState<any>(null);
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
