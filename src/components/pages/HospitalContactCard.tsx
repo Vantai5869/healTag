@@ -8,7 +8,7 @@ interface HospitalContactCardProps {
 
 export default function HospitalContactCard({ hospitalName }: HospitalContactCardProps) {
   return (
-    <section className="w-full max-w-[1200px] px-2 sm:px-4 md:px-8">
+    <section className="w-full max-w-[1200px] mx-auto px-2 sm:px-4 md:px-8">
       <div className="shadow-[0_0_4px_0_rgba(0,0,0,0.10)] bg-white rounded-[12px] overflow-hidden p-4 sm:p-6 md:p-8">
         <div className="w-full flex flex-col md:flex-row items-stretch gap-4 sm:gap-6">
           {/* Left image */}
