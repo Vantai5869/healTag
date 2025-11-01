@@ -1,13 +1,15 @@
 'use client';
 import Image from "next/image";
 import type { HospitalVariantConfig } from "@/lib/hospitals";
-import { Ambulance, Building2, FlaskConical, Pill, Stethoscope, HeartPulse, ShieldPlus, ActivitySquare, Phone, Mail, MapPin } from "lucide-react";
+import { Ambulance, Building2, FlaskConical, Pill, Stethoscope, HeartPulse, ShieldPlus, ActivitySquare } from "lucide-react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
+import HospitalTitleBar from "./HospitalTitleBar";
+import HospitalContactCard from "./HospitalContactCard";
 
 export default function HospitalLanding({ config }: { config: HospitalVariantConfig }) {
   const doctorImages = ['/imgs/bacsi1-1.png', '/imgs/bacsi1-2.png', '/imgs/bacsi1-3.png'];
@@ -35,17 +37,11 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
     <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
       <div className="mx-auto max-w-[1200px]">
         {/* Header section */}
-        <div className="flex items-center w-full pr-0 rounded-lg bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] backdrop-blur-sm">
-          <div className="flex items-center gap-x-3 p-4">
-            <Image src="/svgs/benhvien-logo.svg" alt="Hospital Logo" width={50} height={50} priority sizes="50px" />
-            <span className="text-white font-inter text-2xl sm:text-3xl font-bold leading-tight tracking-tight -ml-[2px]">
-              {config.name}
-            </span>
-          </div>
-          <div className="ml-auto">
-            <Image src="/svgs/history-list.svg" alt="History Icon" width={80} height={63} className="h-auto" style={{ width: 'auto', height: 'auto' }} priority sizes="80px" />
-          </div>
-        </div>
+        <HospitalTitleBar 
+          hospitalName={config.name}
+          gradientFrom="#3A8EF6"
+          gradientTo="#6F3AFA"
+        />
         {/* Section 2: Responsive Hero */}
         <div className="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between mt-8 gap-4 md:gap-10">
           {/* Left image */}
@@ -272,43 +268,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
       </section>
       {/* Section 7: Hospital contact card */}
       <section className="mt-16">
-        <div className="mx-auto w-full max-w-[1200px] shadow-[0_0_4px_0_rgba(0,0,0,0.10)] bg-white rounded-[12px] overflow-hidden p-6 md:p-8">
-          <div className="w-full flex flex-col md:flex-row items-stretch gap-6">
-            {/* Left image */}
-            <div className="w-full h-[339.623px] md:w-[330.566px] md:h-[339.623px] shrink-0 rounded-[22.642px] overflow-hidden relative">
-              <Image
-                src="/imgs/benh-vien-1.png"
-                alt="Bệnh viện"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 330px"
-                loading="lazy"
-              />
-            </div>
-            {/* Right text */}
-            <div className="flex-1 flex flex-col gap-6 justify-center">
-              <div className="text-black/90" style={{ fontFamily: 'Lato', fontSize: '36.226px', fontWeight: 900, lineHeight: 'normal' }}>
-                Bệnh viện Bạch Mai
-              </div>
-              <div className="flex flex-col gap-6" style={{ color: 'rgba(0,0,0,0.87)', fontFamily: 'Lato', fontSize: '36.226px', fontWeight: 400, lineHeight: 'normal' }}>
-                <div className="flex flex-col md:flex-row md:items-center gap-y-3 gap-x-12">
-                  <div className="flex items-center gap-4">
-                    <Phone className="h-8 w-8 text-[#21C55D]" />
-                    <span>0989989899</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Mail className="h-8 w-8 text-[#1D4ED8]" />
-                    <span>bachmai@gmail.com</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="h-8 w-8 text-[#EF2B67] mt-1" />
-                  <span>78 Đường Giải Phóng, Phường Kim Liên, Thành phố Hà Nội</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HospitalContactCard hospitalName={config.name} />
       </section>
     </div>
   );
