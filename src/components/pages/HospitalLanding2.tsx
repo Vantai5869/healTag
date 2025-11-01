@@ -2,7 +2,7 @@
 import Image from "next/image";
 import type { HospitalVariantConfig } from "@/lib/hospitals";
 import HospitalTitleBar from "./HospitalTitleBar";
-import { Building2, Calendar, ClipboardList, Stethoscope, Heart, Hospital, FlaskConical, User, type LucideIcon } from "lucide-react";
+import { Building2, Calendar, ClipboardList, Stethoscope, Heart, Hospital, FlaskConical, type LucideIcon } from "lucide-react";
 import HospitalContactCard from "./HospitalContactCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -130,14 +130,14 @@ const newsItems: News[] = [
 ];
 
 export default function HospitalLanding2({ config }: { config: HospitalVariantConfig }) {
-  if (!config) {
-    return null;
-  }
-
   const [doctorSwiper, setDoctorSwiper] = useState<SwiperType | null>(null);
   const [doctorActive, setDoctorActive] = useState(0);
   const [newsSwiper, setNewsSwiper] = useState<SwiperType | null>(null);
   const [newsActive, setNewsActive] = useState(0);
+
+  if (!config) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col items-center gap-16 bg-[#FFFFF9] pb-[100px] px-2 sm:px-4 md:px-8 w-full max-w-[1512px] mx-auto">
