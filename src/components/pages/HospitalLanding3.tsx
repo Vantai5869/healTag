@@ -82,8 +82,9 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
         </div>
 
               {/* Button */}
-              <button 
-                className="mt-[38px] flex-shrink-0 rounded-[8px] shadow-lg flex items-center justify-center"
+              <Link 
+                href={`/hospitals/${config.slug}/booking`}
+                className="mt-[38px] flex-shrink-0 rounded-[8px] shadow-lg flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
                 style={{
                   width: '199px',
                   height: '51px',
@@ -93,7 +94,7 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
                 <span className="text-white text-center font-inter text-[17px] font-bold leading-[32px] tracking-[-0.6px]">
                   Đặt lịch khám
                 </span>
-              </button>
+              </Link>
 
               {/* Statistics */}
               <div className="mt-[42px] flex justify-between items-start self-stretch md:inline-flex md:items-start md:gap-[46px] md:flex-wrap">

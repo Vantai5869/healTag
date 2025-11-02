@@ -66,14 +66,17 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               </p>
             </div>
             {/* Button block */}
-            <button className="flex items-center gap-2.5 px-7 py-4 rounded-full bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] shadow-lg mx-auto md:mx-0">
+            <Link 
+              href={`/hospitals/${config.slug}/booking`}
+              className="flex items-center gap-2.5 px-7 py-4 rounded-full bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] shadow-lg mx-auto md:mx-0 cursor-pointer hover:opacity-90 transition-opacity"
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span className="text-white font-inter text-[17px] font-bold leading-8 tracking-[-0.6px]">
                 Đặt lịch khám ngay
               </span>
-            </button>
+            </Link>
           </div>
         </div>
         {/* Section 3: Services */}

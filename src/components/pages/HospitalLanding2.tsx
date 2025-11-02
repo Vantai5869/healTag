@@ -227,11 +227,14 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
             </div>
 
             {/* Button */}
-            <button className="flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-md bg-[#FFBF2A] mt-4 md:mt-auto w-full md:w-auto max-w-[163px]">
+            <Link 
+              href={`/hospitals/${config.slug}/booking`}
+              className="flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-md bg-[#FFBF2A] mt-4 md:mt-auto w-full md:w-auto max-w-[163px] cursor-pointer hover:opacity-90 transition-opacity"
+            >
               <span className="text-white font-inter text-base font-bold leading-[21px]">
                 Đặt lịch khám
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -246,11 +249,15 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
           <p className="w-full text-[#353945] font-inter text-sm sm:text-base md:text-[18px] font-normal leading-[24px] sm:leading-[28px] md:leading-[32px] break-words" style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>
             Chăm sóc sức khỏe toàn diện cho gia đình bạn. Không cần xếp hàng chờ đợi, Hệ thống hỗ trợ đặt lịch khám theo chuyên khoa, bác sĩ hoặc khung giờ mong muốn – giúp bạn chủ động sắp xếp thời gian và được tiếp đón chu đáo khi đến bệnh viện.
           </p>
-          <button className="flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-md bg-[#FFBF2A] w-full md:w-auto" style={{ maxWidth: '163px' }}>
+          <Link 
+            href={`/hospitals/${config.slug}/booking`}
+            className="flex items-center justify-center gap-2.5 px-7 py-2.5 rounded-md bg-[#FFBF2A] w-full md:w-auto cursor-pointer hover:opacity-90 transition-opacity"
+            style={{ maxWidth: '163px' }}
+          >
             <span className="text-white font-inter text-base font-bold leading-[21px]">
               Đặt lịch khám
             </span>
-          </button>
+          </Link>
         </div>
 
         {/* Right: Image with Cards overlay */}
