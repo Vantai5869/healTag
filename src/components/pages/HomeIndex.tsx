@@ -71,9 +71,14 @@ export default function HomeIndex() {
         <div className="mx-auto flex w-full max-w-[1512px] flex-col items-center gap-8 sm:gap-10 lg:gap-12 pt-6 pb-8 sm:py-[50px] px-4 sm:px-6 lg:px-8">
           <div className="flex w-full max-w-[1294px] flex-col items-center gap-10 lg:gap-20">
             <div className="flex w-full max-w-[1294px] items-center justify-between rounded-full bg-white/15 px-3 sm:px-4 py-2 shadow-[0_4px_14px_0_rgba(0,0,0,0.09)] backdrop-blur-[15px] relative">
-              <div>
-                <Image src="/svgs/Logo.svg" alt={tNav('logoAlt')} width={100.39} height={39.95} className="w-auto h-auto" priority sizes="100px" />
-              </div>
+              <Link href="/" className="flex-shrink-0 z-10 relative flex items-center">
+                <img 
+                  src="/svgs/Logo.svg" 
+                  alt={tNav('logoAlt')} 
+                  className="h-[40px] w-auto object-contain"
+                  style={{ display: 'block' }}
+                />
+              </Link>
               <div className="hidden lg:flex flex-col items-start rounded-[33px] bg-white/45 p-[4px] backdrop-blur-[5px]">
                 <nav className="flex items-center gap-6 rounded-full px-4 py-2">
                   {[
