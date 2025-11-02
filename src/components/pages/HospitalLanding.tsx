@@ -9,6 +9,8 @@ import 'swiper/css/pagination';
 import { useState } from 'react';
 import HospitalTitleBar from "./HospitalTitleBar";
 import HospitalContactCard from "./HospitalContactCard";
+import { Link } from "@/i18n/navigation";
+import { generateDoctorSlug } from "@/lib/doctors";
 
 export default function HospitalLanding({ config }: { config: HospitalVariantConfig }) {
   const doctorImages = ['/imgs/bacsi1-1.png', '/imgs/bacsi1-2.png', '/imgs/bacsi1-3.png'];
@@ -150,30 +152,36 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
           >
             {doctors.map((d, idx) => (
               <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
-                <div className="flex w-[370px] flex-col items-start gap-[15px]">
-                  {/* Image wrapper with fixed box to avoid CLS */}
-                  <div className="flex h-[414px] p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
-                    <div className="relative w-[350px] h-[394px]">
-                      <Image 
-                        src={d.img} 
-                        alt={d.name} 
-                        fill 
-                        className="object-contain" 
-                        sizes="350px"
-                        loading={idx < 2 ? "eager" : "lazy"}
-                      />
+                <Link href={`/hospitals/${config.slug}/doctors/${generateDoctorSlug(d.name)}`}>
+                  <div className="flex w-[370px] flex-col items-start gap-[15px] cursor-pointer hover:opacity-90 transition-opacity">
+                    {/* Image wrapper with fixed box to avoid CLS */}
+                    <div className="flex h-[414px] p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
+                      <div className="relative w-[350px] h-[394px]">
+                        <Image 
+                          src={d.img} 
+                          alt={d.name} 
+                          fill 
+                          className="object-contain" 
+                          sizes="350px"
+                          loading={idx < 2 ? "eager" : "lazy"}
+                        />
+                      </div>
+                    </div>
+                    {/* Text block */}
+                    <div className="flex w-[370px] flex-col items-center gap-[1px]">
+                      <div className="self-stretch text-[#1B3C74] text-center font-inter text-[24px] font-[400] leading-[48px]">
+                        {d.name}
+                      </div>
+                      <div className="self-stretch text-[#3A8EF6] text-center font-inter text-[16px] font-[500] leading-[27px]">
+                        {d.dept}
+                      </div>
+                      {/* Button */}
+                      <button className="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] text-white font-inter text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer">
+                        Xem chi tiết
+                      </button>
                     </div>
                   </div>
-                  {/* Text block */}
-                  <div className="flex w-[370px] flex-col items-center gap-[1px]">
-                    <div className="self-stretch text-[#1B3C74] text-center font-inter text-[24px] font-[400] leading-[48px]">
-                      {d.name}
-                    </div>
-                    <div className="self-stretch text-[#3A8EF6] text-center font-inter text-[16px] font-[500] leading-[27px]">
-                      {d.dept}
-                    </div>
-                  </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

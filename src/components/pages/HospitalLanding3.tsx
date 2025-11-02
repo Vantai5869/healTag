@@ -5,6 +5,8 @@ import HospitalTitleBar from "./HospitalTitleBar";
 import HospitalContactCard from "./HospitalContactCard";
 import { Building2, ActivitySquare, HeartPulse, FlaskConical, Stethoscope, ArrowRight } from "lucide-react";
 import { useState } from 'react';
+import { Link } from "@/i18n/navigation";
+import { generateDoctorSlug } from "@/lib/doctors";
 
 export default function HospitalLanding3({ config }: { config: HospitalVariantConfig }) {
   const [activeNewsTab, setActiveNewsTab] = useState<'latest' | 'training' | 'common'>('latest');
@@ -322,64 +324,69 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
               ].map((expert, index) => {
                 const rotation = index % 2 === 0 ? '-4deg' : '4deg';
                 return (
-                <div
+                <Link 
                   key={index}
-                  className="flex flex-col items-start gap-[7.58px] p-4 rounded-[15.161px] border border-white bg-white/10 flex-shrink-0 relative"
-                  style={{
-                    borderWidth: '0.948px',
-                    boxShadow: '0 -1.895px 3.79px 0 rgba(0, 0, 0, 0.05), 0 1.895px 3.79px 0 rgba(0, 0, 0, 0.05)',
-                    backdropFilter: 'blur(9.475564002990723px)',
-                    transform: `rotate(${rotation})`,
-                    zIndex: index + 1,
-                  }}
+                  href={`/hospitals/${config.slug}/doctors/${generateDoctorSlug(expert.name)}`}
+                  className="cursor-pointer hover:opacity-90 transition-opacity"
                 >
-                  {/* Image */}
-                  <div className="relative w-[205px] aspect-square overflow-hidden rounded-lg">
-                    <Image 
-                      src={expert.image} 
-                      alt={expert.name} 
-                      fill 
-                      className="object-cover" 
-                      sizes="205px"
-                      loading={index < 3 ? "eager" : "lazy"}
-                    />
-                  </div>
-
-                  {/* Info Block */}
-                  <div 
-                    className="flex justify-between items-center w-[205px] px-4 py-2 rounded-[8px] border border-white"
+                  <div
+                    className="flex flex-col items-start gap-[7.58px] p-4 rounded-[15.161px] border border-white bg-white/10 flex-shrink-0 relative"
                     style={{
-                      padding: '8px 16px',
-                      borderWidth: '0.5px',
-                      background: 'rgba(81, 255, 226, 0.30)',
-                      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 -2px 4px 0 rgba(0, 0, 0, 0.05)',
-                      backdropFilter: 'blur(9.475000381469727px)',
+                      borderWidth: '0.948px',
+                      boxShadow: '0 -1.895px 3.79px 0 rgba(0, 0, 0, 0.05), 0 1.895px 3.79px 0 rgba(0, 0, 0, 0.05)',
+                      backdropFilter: 'blur(9.475564002990723px)',
+                      transform: `rotate(${rotation})`,
+                      zIndex: index + 1,
                     }}
                   >
-                    {/* Text Info */}
-                    <div className="flex flex-col items-start gap-[0.948px]">
-                      <div 
-                        className="text-white font-inter text-[15.161px] font-normal leading-normal"
-                        style={{
-                          letterSpacing: '-1.364px',
-                        }}
-                      >
-                        {expert.name}
-                      </div>
-                      <div 
-                        className="text-white/50 font-inter text-[9.476px] font-normal leading-normal"
-                        style={{
-                          letterSpacing: '-0.569px',
-                        }}
-                      >
-                        {expert.hospital}
-                      </div>
+                    {/* Image */}
+                    <div className="relative w-[205px] aspect-square overflow-hidden rounded-lg">
+                      <Image 
+                        src={expert.image} 
+                        alt={expert.name} 
+                        fill 
+                        className="object-cover" 
+                        sizes="205px"
+                        loading={index < 3 ? "eager" : "lazy"}
+                      />
                     </div>
 
-                    {/* Icon */}
-                    <ArrowRight className="w-4 h-4 text-white flex-shrink-0" />
+                    {/* Info Block */}
+                    <div 
+                      className="flex justify-between items-center w-[205px] px-4 py-2 rounded-[8px] border border-white"
+                      style={{
+                        padding: '8px 16px',
+                        borderWidth: '0.5px',
+                        background: 'rgba(81, 255, 226, 0.30)',
+                        boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 -2px 4px 0 rgba(0, 0, 0, 0.05)',
+                        backdropFilter: 'blur(9.475000381469727px)',
+                      }}
+                    >
+                      {/* Text Info */}
+                      <div className="flex flex-col items-start gap-[0.948px]">
+                        <div 
+                          className="text-white font-inter text-[15.161px] font-normal leading-normal"
+                          style={{
+                            letterSpacing: '-1.364px',
+                          }}
+                        >
+                          {expert.name}
+                        </div>
+                        <div 
+                          className="text-white/50 font-inter text-[9.476px] font-normal leading-normal"
+                          style={{
+                            letterSpacing: '-0.569px',
+                          }}
+                        >
+                          {expert.hospital}
+                        </div>
+                      </div>
+
+                      {/* Icon */}
+                      <ArrowRight className="w-4 h-4 text-white flex-shrink-0" />
+                    </div>
                   </div>
-                </div>
+                </Link>
                 );
               })}
             </div>

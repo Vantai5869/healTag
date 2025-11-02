@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Link } from "@/i18n/navigation";
+import { generateDoctorSlug } from "@/lib/doctors";
 
 interface SpecializedUnit {
   name: string;
@@ -476,76 +478,88 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
             >
               {doctors.map((doctor, idx) => (
                 <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
-                  <div className="flex w-[380px] flex-col items-start gap-[10px]">
-                    <div 
-                      className="flex flex-col items-start gap-[10px] rounded-[30px] self-stretch" 
-                      style={{ 
-                        padding: '35px 30px',
-                        background: 'rgba(251, 247, 210, 0.30)',
-                        minHeight: '600px'
-                      }}
-                    >
-                      <div className="flex flex-col items-center gap-[15px] flex-1 w-full">
-                      {/* Image wrapper with fixed box to avoid CLS */}
-                      <div className="flex justify-center items-center w-full" style={{ height: '320px', minHeight: '320px' }}>
-                        <div className="relative" style={{ width: '320px', height: '320px' }}>
-                          <Image 
-                            src={doctor.image} 
-                            alt={doctor.name} 
-                            fill 
-                            className="object-contain rounded-full" 
-                            sizes="320px"
-                            loading={idx < 2 ? "eager" : "lazy"}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Text block */}
-                      <div className="flex flex-col items-center gap-[18px] self-stretch">
-                        {/* Name and Specialty */}
-                        <div className="flex flex-col items-start gap-2 self-stretch">
-                          {/* Name */}
-                          <div 
-                            className="self-stretch text-center font-inter break-words"
-                            style={{
-                              color: '#2677BC',
-                              fontSize: 'clamp(24px, 3vw, 32px)',
-                              fontWeight: 700,
-                              lineHeight: 'normal',
-                            }}
-                          >
-                            {doctor.name}
+                  <Link href={`/hospitals/${config.slug}/doctors/${generateDoctorSlug(doctor.name)}`}>
+                    <div className="flex w-[380px] flex-col items-start gap-[10px] cursor-pointer hover:opacity-90 transition-opacity">
+                      <div 
+                        className="flex flex-col items-start gap-[10px] rounded-[30px] self-stretch" 
+                        style={{ 
+                          padding: '35px 30px',
+                          background: 'rgba(251, 247, 210, 0.30)',
+                          minHeight: '600px'
+                        }}
+                      >
+                        <div className="flex flex-col items-center gap-[15px] flex-1 w-full">
+                        {/* Image wrapper with fixed box to avoid CLS */}
+                        <div className="flex justify-center items-center w-full" style={{ height: '320px', minHeight: '320px' }}>
+                          <div className="relative" style={{ width: '320px', height: '320px' }}>
+                            <Image 
+                              src={doctor.image} 
+                              alt={doctor.name} 
+                              fill 
+                              className="object-contain rounded-full" 
+                              sizes="320px"
+                              loading={idx < 2 ? "eager" : "lazy"}
+                            />
                           </div>
-                          {/* Specialty */}
+                        </div>
+
+                        {/* Text block */}
+                        <div className="flex flex-col items-center gap-[18px] self-stretch">
+                          {/* Name and Specialty */}
+                          <div className="flex flex-col items-start gap-2 self-stretch">
+                            {/* Name */}
+                            <div 
+                              className="self-stretch text-center font-inter break-words"
+                              style={{
+                                color: '#2677BC',
+                                fontSize: 'clamp(24px, 3vw, 32px)',
+                                fontWeight: 700,
+                                lineHeight: 'normal',
+                              }}
+                            >
+                              {doctor.name}
+                            </div>
+                            {/* Specialty */}
+                            <div 
+                              className="self-stretch text-center font-inter break-words"
+                              style={{
+                                color: '#FA843A',
+                                fontSize: 'clamp(18px, 2.5vw, 24px)',
+                                fontWeight: 400,
+                                lineHeight: 'normal',
+                              }}
+                            >
+                              {doctor.specialty}
+                            </div>
+                          </div>
+
+                          {/* Description */}
                           <div 
-                            className="self-stretch text-center font-inter break-words"
+                            className="flex-1 text-center font-inter break-words self-stretch"
                             style={{
-                              color: '#FA843A',
-                              fontSize: 'clamp(18px, 2.5vw, 24px)',
+                              color: '#5B5B5B',
+                              fontSize: 'clamp(14px, 2vw, 18px)',
                               fontWeight: 400,
                               lineHeight: 'normal',
                             }}
                           >
-                            {doctor.specialty}
+                            {doctor.description}
                           </div>
-                        </div>
 
-                        {/* Description */}
-                        <div 
-                          className="flex-1 text-center font-inter break-words self-stretch"
-                          style={{
-                            color: '#5B5B5B',
-                            fontSize: 'clamp(14px, 2vw, 18px)',
-                            fontWeight: 400,
-                            lineHeight: 'normal',
-                          }}
-                        >
-                          {doctor.description}
+                          {/* Button */}
+                          <button 
+                            className="mt-4 px-6 py-2 rounded-lg text-white font-inter text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer"
+                            style={{
+                              background: 'linear-gradient(90deg, #FFBF2A 0%, #FA843A 100%)'
+                            }}
+                          >
+                            Xem chi tiết
+                          </button>
+                        </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>
