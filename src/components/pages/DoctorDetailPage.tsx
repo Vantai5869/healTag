@@ -46,7 +46,7 @@ export default function DoctorDetailPage({ doctor, hospitalConfig }: DoctorDetai
   const buttonGradient = getButtonGradientColors(hospitalConfig.landingPageVariant);
   
   // Rating mặc định nếu chưa có
-  const rating = (doctor as any).rating || 4;
+  const rating = (doctor as Doctor & { rating?: number }).rating || 4;
   const maxRating = 5;
 
   return (
@@ -271,7 +271,7 @@ export default function DoctorDetailPage({ doctor, hospitalConfig }: DoctorDetai
                   </li>
                   <li className="font-inter flex self-stretch text-[#022E61] text-base font-normal leading-6">
                     <span className="mr-2 flex-shrink-0 mt-[9px] w-1.5 h-1.5 rounded-full bg-[#022E61] self-start" />
-                    <span className="flex-1">Trung tâm Y tế Khu vực Doctor's</span>
+                    <span className="flex-1">Trung tâm Y tế Khu vực Doctor&apos;s</span>
                   </li>
                 </ul>
               )}

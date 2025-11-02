@@ -27,14 +27,6 @@ interface BookingPageProps {
 }
 
 export default function BookingPage({ hospitalConfig }: BookingPageProps) {
-  // Guard clause
-  if (!hospitalConfig) {
-    return null;
-  }
-  
-  // Lấy màu gradient theo variant - giống hệt với header của landing page
-  const gradient = getGradientColors(hospitalConfig.landingPageVariant);
-  
   // Step management
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   
@@ -177,6 +169,14 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
     });
     alert('Đặt lịch thành công!');
   };
+
+  // Guard clause - must be after all hooks
+  if (!hospitalConfig) {
+    return null;
+  }
+  
+  // Lấy màu gradient theo variant - giống hệt với header của landing page
+  const gradient = getGradientColors(hospitalConfig.landingPageVariant);
 
   return (
     <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
@@ -591,7 +591,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
                 Chọn khung giờ khám <span style={{ color: gradient.to }}>*</span>
               </label>
               <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 gap-2">
-                {timeSlots.map((timeSlot, index) => {
+                {timeSlots.map((timeSlot) => {
                   const isSelected = selectedTimeSlot === timeSlot;
                   
                   return (
