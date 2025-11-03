@@ -24,7 +24,8 @@ export default function HospitalsStyledSection() {
             {t("title")}
           </p>
           <div className="flex-shrink-0 h-[63px] flex items-center">
-            <img src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} className="w-auto h-full" />
+            {/* Using img for SVG to avoid Next.js Image warnings */}
+            <img src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} className="w-auto h-full" loading="lazy" />
           </div>
         </div>
 

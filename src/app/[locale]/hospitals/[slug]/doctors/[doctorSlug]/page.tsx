@@ -1,8 +1,14 @@
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 import { getHospitalConfigBySlug, getAllHospitalSlugs } from "@/lib/hospitals";
 import { getDoctorBySlug, getAllDoctorSlugs } from "@/lib/doctors";
-import DoctorDetailPage from "@/components/pages/DoctorDetailPage";
+
+// Lazy load DoctorDetailPage để tối ưu bundle size
+const DoctorDetailPage = dynamic(() => import("@/components/pages/DoctorDetailPage"), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-[#FAFBFE]" />
+});
 
 export default async function DoctorDetailPageRoute({
   params,

@@ -1,7 +1,13 @@
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 import { getHospitalConfigBySlug, getAllHospitalSlugs } from "@/lib/hospitals";
-import BookingPage from "@/components/pages/BookingPage";
+
+// Lazy load BookingPage để tối ưu bundle size
+const BookingPage = dynamic(() => import("@/components/pages/BookingPage"), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-[#FAFBFE]" />
+});
 
 export default async function BookingPageRoute({
   params,

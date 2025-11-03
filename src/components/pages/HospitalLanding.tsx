@@ -49,8 +49,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               height={612} 
               priority 
               sizes="(max-width: 768px) 100vw, 487px"
-              className="w-full h-auto"
-              style={{ width: '100%', height: 'auto' }} 
+              style={{ width: '100%', height: 'auto', maxWidth: '487px', display: 'block' }} 
             />
           </div>
           {/* Right content */}

@@ -1,9 +1,23 @@
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import HospitalLanding from "@/components/pages/HospitalLanding";
-import HospitalLanding2 from "@/components/pages/HospitalLanding2";
-import HospitalLanding3 from "@/components/pages/HospitalLanding3";
+import dynamic from "next/dynamic";
 import { getAllHospitalSlugs, getHospitalConfigBySlug } from "@/lib/hospitals";
+
+// Lazy load các hospital landing pages để tối ưu bundle size
+const HospitalLanding = dynamic(() => import("@/components/pages/HospitalLanding"), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-[#FAFBFE]" />
+});
+
+const HospitalLanding2 = dynamic(() => import("@/components/pages/HospitalLanding2"), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-[#FAFBFE]" />
+});
+
+const HospitalLanding3 = dynamic(() => import("@/components/pages/HospitalLanding3"), {
+  ssr: true,
+  loading: () => <div className="min-h-screen bg-[#FAFBFE]" />
+});
 
 export default async function HospitalLandingPage({
   params,
