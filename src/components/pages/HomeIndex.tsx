@@ -147,7 +147,7 @@ export default function HomeIndex() {
                 </div>
                 {/* Image shown above the form when stacked (mobile) */}
                 <div className="relative block md:hidden mt-4 w-full">
-                  <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px] mx-auto" priority sizes="(max-width: 768px) 100vw, 480px" />
+                  <img src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} className="mx-auto w-full max-w-[480px] h-auto" />
                 </div>
                 {/* Inline form with the left block on md+ */}
                 <div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }}>
@@ -213,7 +213,7 @@ export default function HomeIndex() {
                 </div>
               </div>
               <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">
-                <Image src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} width={480} height={360} className="h-auto w-full max-w-[480px]" priority sizes="(max-width: 1024px) 50vw, 480px" />
+                <img src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} className="w-full max-w-[480px] h-auto" />
               </div>
             </div>
           </div>

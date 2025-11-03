@@ -9,7 +9,15 @@ export default function HomeFooter() {
       <div className="max-w-[1440px] mx-auto flex flex-col xl:flex-row items-center justify-between py-5 xl:py-0 gap-6 xl:gap-0">
         {/* Left illustration (SVG) */}
         <div className="flex-shrink-0 flex items-center justify-center xl:justify-start w-full xl:w-auto xl:max-w-[400px] mb-4 xl:mb-0">
-          <Image src="/svgs/footer-img1.svg" alt="Footer Illustration" width={320} height={240} className="w-full max-w-[320px] object-contain" sizes="(max-width: 1280px) 100vw, 320px" loading="lazy" />
+          <Image 
+            src="/svgs/footer-img1.svg" 
+            alt="Footer Illustration" 
+            width={320} 
+            height={240} 
+            style={{ width: "100%", maxWidth: "320px", height: "auto", aspectRatio: "4/3" }} 
+            sizes="(max-width: 1280px) 100vw, 320px" 
+            loading="lazy" 
+          />
         </div>
         {/* Middle: Text and button */}
         <div className="flex flex-col items-center xl:items-start text-white flex-1 px-0 xl:px-4">
@@ -25,8 +33,7 @@ export default function HomeFooter() {
         </div>
         {/* Right: Logo & copyright */}
         <div className="flex flex-col items-center pt-7 xl:pt-0 xl:items-end gap-2 w-full xl:w-auto">
-          <Image src="/svgs/Logo.svg" alt="HealTAG" width={120} height={40} className="mb-2" sizes="120px" loading="lazy" />
-          <span className="text-xs text-white opacity-80">© 2024 Healinify. All Rights Reserved.</span>
+          <Image src="/svgs/Logo.svg" alt="HealTAG" width={120} height={40} className="mb-2" style={{ width: "auto", height: "auto" }} sizes="120px" loading="lazy" unoptimized />
         </div>
       </div>
     </footer>

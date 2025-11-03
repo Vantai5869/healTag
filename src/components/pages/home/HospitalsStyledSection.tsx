@@ -25,7 +25,7 @@ export default function HospitalsStyledSection() {
             {t("title")}
           </p>
           <div className="flex-shrink-0 h-[63px] flex items-center">
-            <Image src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} width={80} height={63} className="w-auto h-full" priority />
+            <img src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} className="w-auto h-full" />
           </div>
         </div>
 
