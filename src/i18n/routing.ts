@@ -7,9 +7,10 @@ export const routing = defineRouting({
   // Default to Vietnamese
   defaultLocale: "vi",
   
-  // Enable automatic locale detection
-  localeDetection: true,
+  // Disable automatic locale detection for better performance
+  // Middleware will skip locale detection which makes navigation faster
+  localeDetection: false,
   
   // Remove locale prefix from URL for cleaner URLs
-  localePrefix: "never",
+  localePrefix: "always",
 });

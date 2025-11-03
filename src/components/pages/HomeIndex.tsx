@@ -206,6 +206,7 @@ export default function HomeIndex() {
                             <Link 
                               key={hospital.id} 
                               href={`/hospitals/${hospital.slug}`}
+                              prefetch={true}
                               className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer"
                             >
                               <Image 
