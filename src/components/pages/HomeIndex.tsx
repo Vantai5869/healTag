@@ -161,12 +161,13 @@ export default function HomeIndex() {
                 </div>
                 {/* Image shown above the form when stacked (mobile) */}
                 <div className="relative block md:hidden mt-4 w-full">
-                  {/* Using img for SVG to avoid Next.js Image warnings */}
-                  <img 
+                  <Image 
                     src="/svgs/banner-art.svg" 
                     alt={tHome('bannerAlt')} 
+                    width={499}
+                    height={339}
+                    sizes="100vw"
                     style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto", display: "block" }}
-                    loading="lazy"
                   />
                 </div>
                 {/* Inline form with the left block on md+ */}
@@ -240,12 +241,15 @@ export default function HomeIndex() {
                 </div>
               </div>
               <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">
-                {/* Using img for SVG to avoid Next.js Image warnings */}
-                <img 
+                <Image 
                   src="/svgs/banner-art.svg" 
                   alt={tHome('bannerAlt')} 
+                  width={499}
+                  height={339}
+                  priority
+                  fetchPriority="high"
+                  sizes="(min-width: 768px) 480px, 100vw"
                   style={{ width: "100%", height: "auto", maxWidth: "480px", display: "block" }}
-                  loading="lazy"
                 />
               </div>
             </div>
