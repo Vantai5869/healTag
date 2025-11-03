@@ -28,7 +28,7 @@ const manrope = Manrope({
 });
 
 // Extract domain to a constant to avoid repetition
-const DOMAIN = "https://next-app-i18n-starter.vercel.app";
+const DOMAIN = "https://heal-tag.vercel.app";
 
 export default async function RootLayout({
   children,
@@ -108,17 +108,14 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),
-    other: {
-      "google-site-verification": "sVYBYfSJfXdBca3QoqsZtD6lsWVH6sk02RCH4YAbcm8",
-    },
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: DOMAIN,
-      siteName: "Next.js i18n Template",
+      siteName: "HealTAG",
       images: [
         {
-          url: `${DOMAIN}/og-image.png`,
+          url: `${DOMAIN}/og-image.png?v=2`,
           width: 1200,
           height: 630,
           alt: t("title"),
@@ -131,8 +128,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [`${DOMAIN}/og-image.png`],
-      creator: "@s0ver5",
+      images: [`${DOMAIN}/og-image.png?v=2`],
     },
     alternates: {
       canonical: DOMAIN,

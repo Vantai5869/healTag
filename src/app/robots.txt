@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://next-app-i18n-starter.vercel.app/sitemap.xml
+Sitemap: https://heal-tag.vercel.app/sitemap.xml
