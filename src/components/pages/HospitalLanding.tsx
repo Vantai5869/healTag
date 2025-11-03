@@ -4,8 +4,7 @@ import type { HospitalVariantConfig } from "@/lib/hospitals";
 import { Ambulance, Building2, FlaskConical, Pill, Stethoscope, HeartPulse, ShieldPlus, ActivitySquare } from "lucide-react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+// Swiper CSS is now imported globally in layout.tsx
 import { useState } from 'react';
 import HospitalTitleBar from "./HospitalTitleBar";
 import HospitalContactCard from "./HospitalContactCard";

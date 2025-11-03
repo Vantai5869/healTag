@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -17,17 +18,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import HospitalsStyledSection from "@/components/pages/home/HospitalsStyledSection";
 import MobileNavDrawer from "@/components/MobileNavDrawer";
 import MobileLangSwitcher from "@/components/MobileLangSwitcher";
 import NotificationDropdown from "@/components/NotificationDropdown";
-import HomeMainFeatureSection from "@/components/pages/HomeMainFeatureSection";
-import HomeFooter from "@/components/pages/HomeFooter";
 import { useTranslations } from 'next-intl';
 import { SAMPLE_HOSPITALS } from '@/lib/hospitalSamples';
 import { useState, useRef, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+
+// Lazy load các component nặng để tối ưu initial load
+const HospitalsStyledSection = dynamic(
+  () => import("@/components/pages/home/HospitalsStyledSection"),
+  { ssr: true }
+);
+
+const HomeMainFeatureSection = dynamic(
+  () => import("@/components/pages/HomeMainFeatureSection"),
+  { ssr: true }
+);
+
+const HomeFooter = dynamic(
+  () => import("@/components/pages/HomeFooter"),
+  { ssr: true }
+);
 
 export default function HomeIndex() {
   const tNav = useTranslations('Navigation');
@@ -72,11 +86,11 @@ export default function HomeIndex() {
           <div className="flex w-full max-w-[1294px] flex-col items-center gap-10 lg:gap-20">
             <div className="flex w-full max-w-[1294px] items-center justify-between rounded-full bg-white/15 px-3 sm:px-4 py-2 shadow-[0_4px_14px_0_rgba(0,0,0,0.09)] backdrop-blur-[15px] relative">
               <Link href="/" className="flex-shrink-0 z-10 relative flex items-center">
+                {/* Using img for SVG to avoid Next.js Image warnings */}
                 <img 
                   src="/svgs/Logo.svg" 
                   alt={tNav('logoAlt')} 
-                  className="h-[40px] w-auto object-contain"
-                  style={{ display: 'block' }}
+                  style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
                 />
               </Link>
               <div className="hidden lg:flex flex-col items-start rounded-[33px] bg-white/45 p-[4px] backdrop-blur-[5px]">
@@ -90,7 +104,7 @@ export default function HomeIndex() {
                     tNav('contact'),
                     tNav('aiAssistant'),
                   ].map((label) => (
-                    <span key={label} className="font-semibold text-[16px] leading-none tracking-[-0.64px] text-transparent bg-clip-text cursor-pointer" style={{ backgroundImage: "linear-gradient(90deg, #007BFF 0%, #4DBFFF 100%)" }}>
+                    <span key={label} className="font-semibold text-[16px] leading-tight tracking-[-0.64px] text-transparent bg-clip-text cursor-pointer whitespace-nowrap px-1" style={{ backgroundImage: "linear-gradient(90deg, #007BFF 0%, #4DBFFF 100%)" }}>
                       {label}
                     </span>
                   ))}
@@ -147,7 +161,13 @@ export default function HomeIndex() {
                 </div>
                 {/* Image shown above the form when stacked (mobile) */}
                 <div className="relative block md:hidden mt-4 w-full">
-                  <img src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} className="mx-auto w-full max-w-[480px] h-auto" />
+                  {/* Using img for SVG to avoid Next.js Image warnings */}
+                  <img 
+                    src="/svgs/banner-art.svg" 
+                    alt={tHome('bannerAlt')} 
+                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto", display: "block" }}
+                    loading="lazy"
+                  />
                 </div>
                 {/* Inline form with the left block on md+ */}
                 <div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }}>
@@ -188,7 +208,14 @@ export default function HomeIndex() {
                               href={`/hospitals/${hospital.slug}`}
                               className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer"
                             >
-                              <img src={hospital.logo} alt={hospital.name} className="h-8 w-8 rounded-full object-contain border border-slate-100" />
+                              <Image 
+                                src={hospital.logo ?? "/svgs/Logo.svg"} 
+                                alt={hospital.name} 
+                                width={32}
+                                height={32}
+                                className="h-8 w-8 rounded-full object-contain border border-slate-100" 
+                                loading="lazy"
+                              />
                               <div className="min-w-0 flex-1">
                                 <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
                                 <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
@@ -213,7 +240,13 @@ export default function HomeIndex() {
                 </div>
               </div>
               <div className="relative hidden md:flex items-center justify-center mt-6 md:mt-0 order-2 md:order-2 md:col-span-5">
-                <img src="/svgs/banner-art.svg" alt={tHome('bannerAlt')} className="w-full max-w-[480px] h-auto" />
+                {/* Using img for SVG to avoid Next.js Image warnings */}
+                <img 
+                  src="/svgs/banner-art.svg" 
+                  alt={tHome('bannerAlt')} 
+                  style={{ width: "100%", height: "auto", maxWidth: "480px", display: "block" }}
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
+// Swiper CSS is now imported globally in globals.css
 import HospitalMiniCard from "@/components/pages/home/HospitalMiniCard";
 import type { MiniHospital } from "@/components/pages/home/HospitalMiniCard";
 import { SAMPLE_HOSPITALS } from "@/lib/hospitalSamples";

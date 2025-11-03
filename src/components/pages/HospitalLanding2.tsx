@@ -6,8 +6,7 @@ import { Building2, Calendar, ClipboardList, Stethoscope, Heart, Hospital, Flask
 import HospitalContactCard from "./HospitalContactCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+// Swiper CSS is now imported globally in layout.tsx
 import { Link } from "@/i18n/navigation";
 import { generateDoctorSlug } from "@/lib/doctors";
 
