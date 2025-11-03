@@ -160,6 +160,8 @@
   },
   "HospitalCard": {
     "logoAlt": "Logo {name}",
-    "bookNowButton": "Book now"
+    "bookNowButton": "Book now",
+    "cardAriaLabel": "View {name} hospital page",
+    "bookNowAriaLabel": "Book appointment at {name}"
   }
 }

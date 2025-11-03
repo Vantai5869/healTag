@@ -30,7 +30,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
+    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1200px]">
         {/* Header section */}
         <HospitalTitleBar 
@@ -88,15 +88,15 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
                style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}
              >
               {[
-                { label: "Bác sĩ", icon: <Stethoscope className="h-12 w-12 text-[#3A8EF6]" /> },
-                { label: "Phòng nghiên cứu", icon: <FlaskConical className="h-12 w-12 text-[#3A8EF6]" /> },
-                { label: "Phòng khám", icon: <Building2 className="h-12 w-12 text-[#3A8EF6]" /> },
-                { label: "Thuốc", icon: <Pill className="h-12 w-12 text-[#3A8EF6]" /> },
-                { label: "Xe cứu thương", icon: <Ambulance className="h-12 w-12 text-[#3A8EF6]" /> },
+                { label: "Bác sĩ", icon: <Stethoscope className="h-10 w-10 sm:h-12 sm:w-12 text-[#3A8EF6]" /> },
+                { label: "Phòng nghiên cứu", icon: <FlaskConical className="h-10 w-10 sm:h-12 sm:w-12 text-[#3A8EF6]" /> },
+                { label: "Phòng khám", icon: <Building2 className="h-10 w-10 sm:h-12 sm:w-12 text-[#3A8EF6]" /> },
+                { label: "Thuốc", icon: <Pill className="h-10 w-10 sm:h-12 sm:w-12 text-[#3A8EF6]" /> },
+                { label: "Xe cứu thương", icon: <Ambulance className="h-10 w-10 sm:h-12 sm:w-12 text-[#3A8EF6]" /> },
               ].map((item) => (
                  <div key={item.label} className="flex h-[153px] flex-col items-center justify-center rounded-xl bg-[#F6F9FF]">
                   {item.icon}
-                  <span className="mt-4 text-center text-[#ABB6C7] font-inter text-[18px] font-normal leading-none tracking-[0.36px]">
+                  <span className="mt-4 text-center text-[#ABB6C7] font-inter text-[14px] sm:text-[18px] font-normal leading-none tracking-[0.36px]">
                     {item.label}
                   </span>
                 </div>
@@ -107,7 +107,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
         {/* Section 4: Featured departments */}
         <section className="mt-16">
           <div className="mx-auto w-full max-w-[1200px] flex flex-col items-center gap-[46px] rounded-none bg-[#EFF6FE] p-6">
-            <h3 className="self-stretch text-center text-[#1B3C74] font-inter text-[32px] font-semibold leading-[67px] capitalize">
+            <h3 className="self-stretch text-center text-[#1B3C74] font-inter text-[22px] sm:text-[28px] md:text-[32px] font-semibold leading-[34px] sm:leading-[48px] md:leading-[67px] capitalize">
               Chuyên khoa nổi bật
             </h3>
             <div
@@ -115,19 +115,19 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
               style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}
             >
               {[
-                { label: "Trung tâm cấp cứu A9", icon: <Building2 className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm Phẫu thuật tiêu hoá", icon: <Stethoscope className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm hô hấp", icon: <HeartPulse className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm hồi sức tích cực", icon: <ActivitySquare className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm huyết học và truyền máu", icon: <FlaskConical className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm an toàn", icon: <ShieldPlus className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm phẫu thuật", icon: <Building2 className="h-14 w-14 text-[#3A8EF6]" /> },
-                { label: "Trung tâm xương khớp", icon: <ActivitySquare className="h-14 w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm cấp cứu A9", icon: <Building2 className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm Phẫu thuật tiêu hoá", icon: <Stethoscope className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm hô hấp", icon: <HeartPulse className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm hồi sức tích cực", icon: <ActivitySquare className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm huyết học và truyền máu", icon: <FlaskConical className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm an toàn", icon: <ShieldPlus className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm phẫu thuật", icon: <Building2 className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
+                { label: "Trung tâm xương khớp", icon: <ActivitySquare className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 text-[#3A8EF6]" /> },
               ].map((item) => (
                 <div key={item.label} className="flex w-full p-6 justify-between items-start rounded-[10px] bg-white shadow-[0_34px_44px_0_rgba(213,219,228,0.44)]">
                   <div className="flex h-[136px] flex-col items-center gap-2 mx-auto">
                     {item.icon}
-                    <span className="w-[121px] h-[36px] shrink-0 text-center text-[#ABB6C7] font-inter text-[14px] font-medium leading-[22px]">
+                    <span className="w-[121px] h-[36px] shrink-0 text-center text-[#ABB6C7] font-inter text-[12px] sm:text-[14px] font-medium leading-[18px] sm:leading-[22px]">
                       {item.label}
                     </span>
                   </div>
@@ -140,7 +140,7 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
       {/* Section 5: Doctors carousel - Swiper with stable sizing and preloading */}
       <section className="mt-16">
         <div className="mx-auto w-full max-w-[1438px]">
-          <h3 className="text-center text-[#1B3C74] font-inter text-[28px] md:text-[32px] font-semibold mb-6">Đội ngũ bác sĩ</h3>
+          <h3 className="text-center text-[#1B3C74] font-inter text-[22px] sm:text-[28px] md:text-[32px] font-semibold mb-6">Đội ngũ bác sĩ</h3>
            <Swiper
              modules={[Pagination]}
              pagination={{
@@ -152,32 +152,32 @@ export default function HospitalLanding({ config }: { config: HospitalVariantCon
              className="px-2 md:px-4"
           >
             {doctors.map((d, idx) => (
-              <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
+              <SwiperSlide key={idx} className="!w-auto mr-[12px] sm:mr-[15px] last:mr-0">
                 <Link href={`/hospitals/${config.slug}/doctors/${generateDoctorSlug(d.name)}`}>
-                  <div className="flex w-[370px] flex-col items-start gap-[15px] cursor-pointer hover:opacity-90 transition-opacity">
+                  <div className="flex w-[300px] sm:w-[370px] flex-col items-start gap-[12px] sm:gap-[15px] cursor-pointer hover:opacity-90 transition-opacity">
                   {/* Image wrapper with fixed box to avoid CLS */}
-                  <div className="flex h-[414px] p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
-                    <div className="relative w-[350px] h-[394px]">
+                  <div className="flex h-[340px] sm:h-[414px] p-[8px] sm:p-[10px] flex-col justify-center items-center self-stretch rounded-[250px_250px_8px_8px] bg-white shadow-[0_15px_55px_-10px_rgba(0,0,0,0.09)]">
+                    <div className="relative w-[280px] h-[320px] sm:w-[350px] sm:h-[394px]">
                       <Image 
                         src={d.img} 
                         alt={d.name} 
                         fill 
                         className="object-contain" 
-                        sizes="350px"
+                        sizes="(max-width: 640px) 280px, 350px"
                         loading={idx < 2 ? "eager" : "lazy"}
                       />
                     </div>
                   </div>
                   {/* Text block */}
-                  <div className="flex w-[370px] flex-col items-center gap-[1px]">
-                    <div className="self-stretch text-[#1B3C74] text-center font-inter text-[24px] font-[400] leading-[48px]">
+                  <div className="flex w-[300px] sm:w-[370px] flex-col items-center gap-[1px]">
+                    <div className="self-stretch text-[#1B3C74] text-center font-inter text-[20px] sm:text-[24px] font-[400] leading-[36px] sm:leading-[48px]">
                       {d.name}
                     </div>
-                    <div className="self-stretch text-[#3A8EF6] text-center font-inter text-[16px] font-[500] leading-[27px]">
+                    <div className="self-stretch text-[#3A8EF6] text-center font-inter text-[14px] sm:text-[16px] font-[500] leading-[22px] sm:leading-[27px]">
                       {d.dept}
                       </div>
                       {/* Button */}
-                      <button className="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] text-white font-inter text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer">
+                      <button className="mt-2 px-5 sm:px-6 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] text-white font-inter text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer">
                         Xem chi tiết
                       </button>
                     </div>

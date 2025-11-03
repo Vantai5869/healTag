@@ -179,7 +179,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
   const gradient = getGradientColors(hospitalConfig.landingPageVariant);
 
   return (
-    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
+    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1200px] w-full overflow-x-hidden">
         {/* Header section - sử dụng màu gradient từ landing page */}
         <HospitalTitleBar 

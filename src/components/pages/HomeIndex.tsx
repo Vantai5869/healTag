@@ -33,10 +33,10 @@ const HospitalsStyledSection = dynamic(
   { ssr: true }
 );
 
-const HomeMainFeatureSection = dynamic(
-  () => import("@/components/pages/HomeMainFeatureSection"),
-  { ssr: true }
-);
+// const HomeMainFeatureSection = dynamic(
+//   () => import("@/components/pages/HomeMainFeatureSection"),
+//   { ssr: true }
+// );
 
 const HomeFooter = dynamic(
   () => import("@/components/pages/HomeFooter"),
@@ -188,7 +188,7 @@ export default function HomeIndex() {
                   <div className="relative w-full">
                     <Input
                       ref={inputRef}
-                      className={`box-border h-[50px] rounded-lg border border-black/10 bg-white px-4 py-0 text-sm leading-none placeholder:text-black/60 ${inputAnimWidthClass}`}
+                      className={`box-border h-[50px] rounded-lg border border-black/10 bg-white px-4 py-0 text-base sm:text-sm leading-none placeholder:text-black/60 ${inputAnimWidthClass}`}
                       placeholder={tForm('hospitalNamePlaceholder')}
                       aria-label={tForm('hospitalNamePlaceholder')}
                       value={searchValue}
@@ -206,7 +206,6 @@ export default function HomeIndex() {
                             <Link 
                               key={hospital.id} 
                               href={`/hospitals/${hospital.slug}`}
-                              prefetch={true}
                               className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer"
                             >
                               <Image 
@@ -255,7 +254,7 @@ export default function HomeIndex() {
       </div>
       {/* Hospitals List - new styled block with Swiper */}
       <HospitalsStyledSection />
-      <HomeMainFeatureSection />
+      {/* <HomeMainFeatureSection /> */}
       <HomeFooter />
     </div>
   );

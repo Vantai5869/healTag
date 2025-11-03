@@ -45,7 +45,7 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
+    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1200px]">
         {/* Header section */}
         <HospitalTitleBar 
@@ -61,7 +61,7 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
             <div className="flex flex-col items-start w-full md:w-auto">
               {/* Title with gradient */}
               <div className="flex flex-col items-start gap-[46px] w-full md:max-w-[518px]">
-                <h1 className="text-[#172048] font-inter text-[32px] sm:text-[40px] md:text-[54.818px] font-bold leading-normal">
+                <h1 className="text-[#172048] font-inter text-[22px] sm:text-[32px] md:text-[54.818px] font-bold leading-normal">
                   Đơn vị tư vấn và{' '}
                   <span 
                     className="bg-gradient-to-r from-[#50DBBD] to-[#01744F] bg-clip-text text-transparent"
@@ -148,7 +148,7 @@ export default function HospitalLanding3({ config }: { config: HospitalVariantCo
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-center md:items-center self-stretch w-full gap-4 md:gap-0">
               {/* Title */}
-              <h2 className="text-[#000] text-center md:text-left font-inter text-[24px] md:text-[40px] font-semibold leading-[48px] w-[275px] md:w-auto md:max-w-[428.718px] self-center md:self-start">
+              <h2 className="text-[#000] text-center md:text-left font-inter text-[20px] sm:text-[28px] md:text-[40px] font-semibold leading-[34px] sm:leading-[40px] md:leading-[48px] w-[275px] md:w-auto md:max-w-[428.718px] self-center md:self-start">
                 Chuyên khoa nổi bật
               </h2>
 

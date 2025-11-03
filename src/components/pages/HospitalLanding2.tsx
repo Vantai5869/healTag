@@ -135,7 +135,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
   }
 
   return (
-    <div className="flex flex-col items-center gap-16 bg-[#FFFFF9] pb-[100px] px-2 sm:px-4 md:px-8 w-full max-w-[1512px] mx-auto">
+    <div className="flex flex-col items-center gap-16 bg-[#FFFFF9] pb-[100px] px-4 sm:px-6 lg:px-8 w-full max-w-[1512px] mx-auto">
       {/* Header section */}
       <div className="flex flex-col items-start gap-8 w-full max-w-[1200px] mt-6 md:mt-[50px]">
         {/* Title bar */}
@@ -309,7 +309,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
       </div>
 
       {/* Stats and Appointment Section */}
-      <div className="flex flex-col lg:flex-row items-center w-full max-w-[1200px] gap-8 px-2 sm:px-4 md:px-8" style={{ gap: 'clamp(32px, 5vw, 74px)' }}>
+      <div className="flex flex-col lg:flex-row items-center w-full max-w-[1200px] gap-8 px-4 sm:px-6 lg:px-8" style={{ gap: 'clamp(32px, 5vw, 74px)' }}>
         {/* Left: Stats Cards Grid */}
         <div className="w-full lg:flex-1 flex justify-center">
           <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full max-w-[485px]">
@@ -320,9 +320,9 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
               return (
                 <div
                   key={index}
-                  className={`flex flex-col justify-center items-center flex-shrink-0 rounded-lg bg-white w-full py-5 lg:py-10 ${isRightColumn ? 'lg:mt-[70px]' : ''}`}
+                  className={`flex flex-col justify-center items-center flex-shrink-0 rounded-lg bg-white w-full py-4 lg:py-10 ${isRightColumn ? 'lg:mt-[70px]' : ''}`}
                   style={{
-                    minHeight: '304px',
+                    minHeight: '220px',
                     height: 'auto',
                     maxWidth: '242.5px',
                     width: '100%',
@@ -330,10 +330,10 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                     minWidth: '0',
                   }}
                 >
-                  <div className="flex flex-col justify-center items-center gap-3 md:gap-6 flex-shrink-0 w-full" style={{ minHeight: '224px', height: 'auto', width: '100%' }}>
+                  <div className="flex flex-col justify-center items-center gap-2.5 md:gap-6 flex-shrink-0 w-full" style={{ minHeight: '160px', height: 'auto', width: '100%' }}>
                     {/* Icon */}
                     <IconComponent 
-                      className="flex-shrink-0 w-16 h-16 lg:w-[100px] lg:h-[100px]" 
+                      className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-[100px] lg:h-[100px]" 
                       style={{ 
                         color: card.iconColor,
                       }}
@@ -341,9 +341,9 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                     
                     {/* Text block */}
                     <div 
-                      className="flex flex-col items-center gap-2 lg:gap-[19.5px] flex-shrink-0 w-full px-4 lg:px-[30.5px]"
+                      className="flex flex-col items-center gap-1.5 lg:gap-[19.5px] flex-shrink-0 w-full px-3 lg:px-[30.5px]"
                       style={{ 
-                        minHeight: '100px',
+                        minHeight: '80px',
                         height: 'auto',
                         width: '100%',
                         paddingBottom: '3px',
@@ -351,7 +351,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                     >
                       {/* Number */}
                       <div 
-                        className="text-center font-poppins break-words w-full text-[28px] lg:text-[48px] leading-[28px] lg:leading-[48px]"
+                        className="text-center font-poppins break-words w-full text-[24px] sm:text-[28px] lg:text-[48px] leading-[28px] lg:leading-[48px]"
                         style={{
                           color: '#1B3C74',
                           fontWeight: 600,
@@ -362,7 +362,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                       
                       {/* Label */}
                       <div 
-                        className="flex flex-col justify-center flex-shrink-0 text-center font-inter break-words w-full text-sm lg:text-lg leading-5 lg:leading-7"
+                        className="flex flex-col justify-center flex-shrink-0 text-center font-inter break-words w-full text-xs sm:text-sm lg:text-lg leading-5 lg:leading-7"
                         style={{
                           minHeight: '21px',
                           height: 'auto',
@@ -436,7 +436,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
       </div>
 
       {/* Doctor Team Section */}
-      <section className="w-full max-w-[1200px] px-2 sm:px-4 md:px-8">
+      <section className="w-full max-w[1200px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start w-full" style={{ gap: '8px' }}>
           {/* Subtitle */}
           <div 
@@ -483,27 +483,27 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
               className="px-2 md:px-4"
             >
               {doctors.map((doctor, idx) => (
-                <SwiperSlide key={idx} className="!w-auto mr-[15px] last:mr-0">
+                <SwiperSlide key={idx} className="!w-auto mr-[12px] sm:mr-[15px] last:mr-0">
                   <Link href={`/hospitals/${config.slug}/doctors/${generateDoctorSlug(doctor.name)}`}>
-                    <div className="flex w-[380px] flex-col items-start gap-[10px] cursor-pointer hover:opacity-90 transition-opacity">
+                    <div className="flex w-[300px] sm:w-[380px] flex-col items-start gap-[12px] sm:gap-[15px] cursor-pointer hover:opacity-90 transition-opacity">
                     <div 
                       className="flex flex-col items-start gap-[10px] rounded-[30px] self-stretch" 
                       style={{ 
-                        padding: '35px 30px',
+                        padding: '28px 24px',
                         background: 'rgba(251, 247, 210, 0.30)',
-                        minHeight: '600px'
+                        minHeight: '520px'
                       }}
                     >
-                      <div className="flex flex-col items-center gap-[15px] flex-1 w-full">
+                      <div className="flex flex-col items-center gap-[12px] sm:gap-[15px] flex-1 w-full">
                       {/* Image wrapper with fixed box to avoid CLS */}
-                      <div className="flex justify-center items-center w-full" style={{ height: '320px', minHeight: '320px' }}>
-                        <div className="relative" style={{ width: '320px', height: '320px' }}>
+                      <div className="flex justify-center items-center w-full" style={{ height: '280px', minHeight: '280px' }}>
+                        <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px]">
                           <Image 
                             src={doctor.image} 
                             alt={doctor.name} 
                             fill 
                             className="object-contain rounded-full" 
-                            sizes="320px"
+                            sizes="(max-width: 640px) 260px, 320px"
                             loading={idx < 2 ? "eager" : "lazy"}
                           />
                         </div>
@@ -512,15 +512,15 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                       {/* Text block */}
                       <div className="flex flex-col items-center gap-[18px] self-stretch">
                         {/* Name and Specialty */}
-                        <div className="flex flex-col items-start gap-2 self-stretch">
+                        <div className="flex flex-col items-start gap-1.5 sm:gap-2 self-stretch">
                           {/* Name */}
                           <div 
                             className="self-stretch text-center font-inter break-words"
                             style={{
                               color: '#2677BC',
-                              fontSize: 'clamp(24px, 3vw, 32px)',
+                              fontSize: 'clamp(20px, 3vw, 32px)',
                               fontWeight: 700,
-                              lineHeight: 'normal',
+                              lineHeight: '36px',
                             }}
                           >
                             {doctor.name}
@@ -530,9 +530,9 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
                             className="self-stretch text-center font-inter break-words"
                             style={{
                               color: '#FA843A',
-                              fontSize: 'clamp(18px, 2.5vw, 24px)',
+                              fontSize: 'clamp(14px, 2.5vw, 24px)',
                               fontWeight: 400,
-                              lineHeight: 'normal',
+                              lineHeight: '22px',
                             }}
                           >
                             {doctor.specialty}
@@ -554,7 +554,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
 
                           {/* Button */}
                           <button 
-                            className="mt-4 px-6 py-2 rounded-lg text-white font-inter text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer"
+                            className="mt-4 px-5 sm:px-6 py-1.5 sm:py-2 rounded-lg text-white font-inter text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity cursor-pointer"
                             style={{
                               background: 'linear-gradient(90deg, #FFBF2A 0%, #FA843A 100%)'
                             }}
@@ -574,7 +574,7 @@ export default function HospitalLanding2({ config }: { config: HospitalVariantCo
       </section>
 
       {/* News Section */}
-      <section className="w-full max-w-[1200px] px-2 sm:px-4 md:px-8">
+      <section className="w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start w-full" style={{ gap: '8px' }}>
           {/* Subtitle */}
           <div 

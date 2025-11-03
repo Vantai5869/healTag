@@ -1,10 +1,10 @@
 "use client";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import MobileLangSwitcher from "@/components/MobileLangSwitcher";
+import { useRouter, usePathname, useParams } from "next/navigation";
 
 const menu = [
   { label: "Trang chủ", href: "/" },
@@ -24,43 +24,63 @@ const user = {
 
 export default function MobileNavDrawer() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
+  const locale = params?.locale?.toString() || "en";
+  const isEN = locale === "en";
+  const nextLocale = isEN ? "vi" : "en";
+  const label = isEN ? "ENG" : "VIE";
+  function handleLangSwitch() {
+    const segments = pathname.split("/");
+    if (segments.length > 1) segments[1] = nextLocale;
+    router.replace(segments.join("/"));
+  }
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <button
           aria-label="Open navigation"
-          className="flex items-center justify-center h-10 w-10 rounded-full border border-transparent hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="flex items-center justify-center h-10 w-10 rounded-full border border-transparent bg-[#007BFF] text-white hover:bg-[#026ae0] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
         >
           <Menu className="h-6 w-6" />
         </button>
       </SheetTrigger>
-      <SheetContent side="right" className="p-0 w-full max-w-sm sm:max-w-md flex flex-col">
-        <SheetHeader>
-          <SheetTitle>
-            <span className="font-bold text-lg tracking-tight">Menu</span>
+      <SheetContent side="right" className="p-0 w-full max-w-sm sm:max-w-md flex flex-col bg-gradient-to-b from-[#007BFF] to-[#51C1FF] text-white">
+        <SheetHeader className="px-4 py-2">
+          <SheetTitle className="flex items-center gap-3 min-w-0">
+            <div className="h-9 w-9 overflow-hidden rounded-full ring-1 ring-white/60 bg-white/10 flex-shrink-0">
+              <Image src={user.avatar} alt="Avatar" width={36} height={36} />
+            </div>
+            <span className="text-white/95 font-medium text-base truncate">{user.name}</span>
           </SheetTitle>
         </SheetHeader>
-        {/* User info area */}
-        <div className="flex flex-col items-center justify-center mt-6 mb-6">
-          <div className="h-12 w-12 overflow-hidden rounded-full ring-1 ring-black/5 mb-2">
-            <Image src={user.avatar} alt="Avatar" width={48} height={48} />
-          </div>
-          <p className="font-semibold text-base tracking-tight text-center text-gray-900">{user.name}</p>
-        </div>
-        <nav className="flex-1 overflow-y-auto px-6 flex flex-col gap-3">
+        {/* Divider line */}
+        <div className="h-px bg-white/20 mx-4"></div>
+        <nav className="flex-1 overflow-y-auto px-0 flex flex-col mt-1">
           {menu.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="block rounded-lg px-4 py-3 font-medium text-lg focus:bg-slate-100 hover:bg-slate-50 transition"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
+            <div key={item.href} className="px-0">
+              <Link
+                href={item.href}
+                className="block px-4 py-3 font-medium text-base text-white/95 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 hover:bg-white/10 transition"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+              <div className="h-px bg-white/12 mx-4"></div>
+            </div>
           ))}
           {/* Mobile language switcher placed at bottom of drawer (mobile only) */}
-          <div className="mt-8 flex flex-row w-full justify-center">
-            <MobileLangSwitcher />
+          <div className="mt-4 mb-3 flex flex-row w-full justify-center">
+            <button
+              type="button"
+              onClick={handleLangSwitch}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-white/95 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 transition"
+              aria-label="Chuyển ngôn ngữ"
+            >
+              <Globe className="h-5 w-5" />
+              <span className="text-xs font-semibold tracking-wide uppercase">{label}</span>
+            </button>
           </div>
         </nav>
       </SheetContent>

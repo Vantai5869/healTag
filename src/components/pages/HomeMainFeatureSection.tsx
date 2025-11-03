@@ -30,13 +30,12 @@ export default function HomeMainFeatureSection() {
     : [introTitle];
 
   return (
-    <section className="w-full bg-white mt-[83px] px-4 sm:px-6">
+    <section className="w-full bg-white mt-10 md:mt-[83px] px-4 sm:px-6">
       <div className="mx-auto flex flex-col items-center px-0">
         <h2
-          className="align-stretch text-center font-bold mb-10 mx-auto bg-gradient-to-r from-[#007BFF] to-[#51C1FFBF] bg-clip-text text-transparent"
+          className="align-stretch text-center font-bold mb-10 mx-auto bg-gradient-to-r from-[#007BFF] to-[#51C1FFBF] bg-clip-text text-transparent px-6 sm:px-0 text-[16px] sm:text-[41px]"
           style={{
             fontFamily: 'Inter, sans-serif',
-            fontSize: 41,
             fontWeight: 700,
             lineHeight: '140%',
             letterSpacing: '-1.64px',

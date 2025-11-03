@@ -160,6 +160,8 @@
   },
   "HospitalCard": {
     "logoAlt": "Logo {name}",
-    "bookNowButton": "Đặt lịch ngay"
+    "bookNowButton": "Đặt lịch ngay",
+    "cardAriaLabel": "Xem trang bệnh viện {name}",
+    "bookNowAriaLabel": "Đặt lịch tại bệnh viện {name}"
   }
 }

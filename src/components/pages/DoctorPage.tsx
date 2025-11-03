@@ -23,7 +23,7 @@ export default function DoctorPage({ config }: { config: HospitalVariantConfig }
   const gradient = getGradientColors(config.landingPageVariant, config.heroGradient);
 
   return (
-    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-2 sm:px-4 md:px-8">
+    <div className="min-h-screen bg-[#FAFBFE] pt-6 md:pt-[50px] pb-[100px] px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1200px]">
         {/* Header section - Shared component */}
         <HospitalTitleBar 
