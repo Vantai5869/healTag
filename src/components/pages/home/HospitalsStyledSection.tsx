@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
