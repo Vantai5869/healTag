@@ -205,7 +205,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
             className="font-inter font-bold"
             style={{
               color: gradient.to,
-              fontSize: '32px',
+              fontSize: 'clamp(20px,5.5vw,32px)',
               fontStyle: 'normal',
               fontWeight: 700,
               lineHeight: '140%',
@@ -347,7 +347,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
               className="font-inter font-bold mb-8 text-center"
               style={{
                 color: gradient.to,
-                fontSize: '32px',
+                fontSize: 'clamp(18px,5.5vw,28px)',
                 fontStyle: 'normal',
                 fontWeight: 700,
                 lineHeight: '140%',
@@ -620,7 +620,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
               <button
                 onClick={handleNextStep}
                 disabled={!isStep1Complete}
-                className="px-8 py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-2.5 sm:py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: isStep1Complete 
                     ? `linear-gradient(90deg, ${gradient.from} 0%, ${gradient.to} 100%)`
@@ -643,7 +643,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
               className="font-inter font-bold mb-6 text-center"
               style={{
                 color: gradient.to,
-                fontSize: '32px',
+                fontSize: 'clamp(18px,5.5vw,28px)',
                 fontStyle: 'normal',
                 fontWeight: 700,
                 lineHeight: '140%',
@@ -753,7 +753,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
                 <button
                   onClick={handleNextStep}
                   disabled={!isStep2Complete}
-                  className="px-8 py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-2.5 sm:py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
                     background: isStep2Complete 
                       ? `linear-gradient(90deg, ${gradient.from} 0%, ${gradient.to} 100%)`
@@ -776,7 +776,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
               className="font-inter font-bold mb-8 text-center"
               style={{
                 color: gradient.to,
-                fontSize: '32px',
+                fontSize: 'clamp(18px,5.5vw,28px)',
                 fontStyle: 'normal',
                 fontWeight: 700,
                 lineHeight: '140%',
@@ -921,7 +921,7 @@ export default function BookingPage({ hospitalConfig }: BookingPageProps) {
               <button
                 onClick={handleBookAppointment}
                 disabled={!reason.trim()}
-                className="px-8 py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-2.5 sm:py-3 rounded-lg text-white font-inter font-bold text-base transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: reason.trim()
                     ? `linear-gradient(90deg, ${gradient.from} 0%, ${gradient.to} 100%)`

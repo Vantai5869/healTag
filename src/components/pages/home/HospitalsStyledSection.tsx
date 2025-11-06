@@ -1,60 +1,68 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-// Swiper CSS is now imported globally in globals.css
 import HospitalMiniCard from "@/components/pages/home/HospitalMiniCard";
 import type { MiniHospital } from "@/components/pages/home/HospitalMiniCard";
 import { SAMPLE_HOSPITALS } from "@/lib/hospitalSamples";
 
-export default function HospitalsStyledSection() {
-  const t = useTranslations("Home.hospitals");
-  const items = SAMPLE_HOSPITALS;
-  const pages: MiniHospital[][] = [];
-  for (let i = 0; i < items.length; i += 6) pages.push(items.slice(i, i + 6));
-  // Desktop/Tablet swiper state
-  const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-  // Mobile: chunk into pages of 2 items (each item one row)
-  const mobilePages: MiniHospital[][] = [];
-  for (let i = 0; i < items.length; i += 2) mobilePages.push(items.slice(i, i + 2));
-  const [mobileSwiper, setMobileSwiper] = useState<SwiperType | null>(null);
-  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+interface HospitalsStyledSectionProps {
+  searchValue?: string;
+}
 
-  // Avoid SSR/CSR markup mismatch by rendering Swiper only on client after mount
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+export default function HospitalsStyledSection({ searchValue = '' }: HospitalsStyledSectionProps) {
+  const t = useTranslations("Home.hospitals");
+  
+  const filteredItems = useMemo(() => {
+    if (!searchValue.trim()) {
+      return SAMPLE_HOSPITALS;
+    }
+    const query = searchValue.trim().toLowerCase();
+    return SAMPLE_HOSPITALS.filter(h => 
+      h.name.toLowerCase().includes(query)
+    );
+  }, [searchValue]);
+  
+  const mobilePages: MiniHospital[][] = [];
+  for (let i = 0; i < filteredItems.length; i += 2) {
+    mobilePages.push(filteredItems.slice(i, i + 2));
+  }
+  
+  const desktopPages: MiniHospital[][] = [];
+  for (let i = 0; i < filteredItems.length; i += 6) {
+    desktopPages.push(filteredItems.slice(i, i + 6));
+  }
+  
+  const [mobileSwiper, setMobileSwiper] = useState<SwiperType | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [desktopSwiper, setDesktopSwiper] = useState<SwiperType | null>(null);
+  const [desktopIndex, setDesktopIndex] = useState(0);
 
   return (
     <section className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 mt-16 mb-6">
-      <div className="rounded-2xl bg-white flex w-full max-w-[1200px] flex-col items-start gap-6 sm:gap-8">
-        <div className="relative flex items-center justify-between self-stretch rounded-[8px] bg-gradient-to-r from-[#007BFF] to-[#004A99] backdrop-blur-[5px] min-h-[63px] pl-4">
-          <p className="text-white" style={{ fontFamily: "Inter", fontSize: 18, fontWeight: 500, lineHeight: "140%", letterSpacing: "-1.08px" }}>
-            {t("title")}
-          </p>
-          <div className="flex-shrink-0 h-[63px] flex items-center">
-            {/* Using img for SVG to avoid Next.js Image warnings */}
-            <img src="/svgs/history-list.svg" alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} className="w-auto h-full" loading="lazy" />
-          </div>
+      <div className="rounded-2xl bg-white flex flex-col gap-6 sm:gap-8">
+        <div className="flex items-center justify-between rounded-lg bg-gradient-to-r from-[#007BFF] to-[#004A99] min-h-[56px] px-4">
+          <p className="text-white text-lg font-medium">{t("title")}</p>
+          <img 
+            src="/svgs/history-list.svg" 
+            alt={t("historyIconAlt") || "Lịch sử tìm kiếm"} 
+            className="h-6 w-auto" 
+            loading="lazy" 
+          />
         </div>
 
-        {/* Mobile-only: show 2 cards per slide, each on its own row */}
-        <div className="block sm:hidden w-full">
-          {isMounted && (
+        <div className="block sm:hidden">
           <Swiper
-            spaceBetween={16}
+            spaceBetween={12}
             slidesPerView={1}
-            onSwiper={(s) => setMobileSwiper(s)}
-            onSlideChange={(s) => setMobileActiveIndex(s.activeIndex)}
-            className="w-full pb-4"
+            onSwiper={setMobileSwiper}
+            onSlideChange={(s) => setMobileIndex(s.activeIndex)}
+            className="w-full"
           >
             {mobilePages.map((page, idx) => (
-              <SwiperSlide key={`m-${idx}`} className="w-full">
-                <div className="grid grid-cols-1 gap-3">
+              <SwiperSlide key={idx}>
+                <div className="flex flex-col gap-3">
                   {page.map((h) => (
                     <HospitalMiniCard key={h.id} hospital={h} />
                   ))}
@@ -62,32 +70,30 @@ export default function HospitalsStyledSection() {
               </SwiperSlide>
             ))}
           </Swiper>
-          )}
-          <div className="mt-3 w-full flex items-center justify-center gap-2">
+          <div className="flex justify-center gap-2 mt-4">
             {mobilePages.map((_, i) => (
               <button
-                key={`m-dot-${i}`}
-                aria-label={`Go to page ${i + 1}`}
+                key={i}
                 onClick={() => mobileSwiper?.slideTo(i)}
-                className={`h-2.5 w-2.5 rounded-full transition-colors ${mobileActiveIndex === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
+                className={`h-2 w-2 rounded-full transition-colors ${
+                  mobileIndex === i ? 'bg-[#007BFF]' : 'bg-gray-300'
+                }`}
               />
             ))}
           </div>
         </div>
 
-        {/* Tablet/Desktop: original 6-per-page grid */}
-        <div className="hidden sm:block w-full">
-          {isMounted && (
+        <div className="hidden sm:block">
           <Swiper
             spaceBetween={16}
             slidesPerView={1}
-            onSwiper={(s) => setSwiper(s)}
-            onSlideChange={(s) => setActiveIndex(s.activeIndex)}
-            className="w-full pb-6"
+            onSwiper={setDesktopSwiper}
+            onSlideChange={(s) => setDesktopIndex(s.activeIndex)}
+            className="w-full"
           >
-            {pages.map((page, idx) => (
-              <SwiperSlide key={idx} className="w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5">
+            {desktopPages.map((page, idx) => (
+              <SwiperSlide key={idx}>
+                <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
                   {page.map((h) => (
                     <HospitalMiniCard key={h.id} hospital={h} />
                   ))}
@@ -95,14 +101,14 @@ export default function HospitalsStyledSection() {
               </SwiperSlide>
             ))}
           </Swiper>
-          )}
-          <div className="mt-3 w-full flex items-center justify-center gap-2">
-            {pages.map((_, i) => (
+          <div className="flex justify-center gap-2 mt-4">
+            {desktopPages.map((_, i) => (
               <button
                 key={i}
-                aria-label={`Go to page ${i + 1}`}
-                onClick={() => swiper?.slideTo(i)}
-                className={`h-2.5 w-2.5 rounded-full transition-colors ${activeIndex === i ? 'bg-[#047DFF]' : 'bg-slate-300'}`}
+                onClick={() => desktopSwiper?.slideTo(i)}
+                className={`h-2 w-2 rounded-full transition-colors ${
+                  desktopIndex === i ? 'bg-[#007BFF]' : 'bg-gray-300'
+                }`}
               />
             ))}
           </div>

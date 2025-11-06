@@ -126,7 +126,7 @@ export default function DoctorDetailPage({ doctor, hospitalConfig }: DoctorDetai
 
             {/* Book Appointment Button */}
             <button
-              className="flex justify-center items-center rounded-lg text-white font-inter font-bold transition-opacity hover:opacity-90 w-full lg:w-[199px] max-w-[199px] h-[51px] text-[clamp(15px,2.5vw,17px)] leading-8 tracking-[-0.6px]"
+              className="flex justify-center items-center rounded-lg text-white font-inter font-bold transition-opacity hover:opacity-90 w-full lg:w-[199px] max-w-[199px] h-[44px] sm:h-[51px] text-[clamp(14px,2.5vw,17px)] leading-8 tracking-[-0.6px]"
               style={{
                 backgroundImage: `linear-gradient(90deg, ${buttonGradient.from} 0%, ${buttonGradient.to} 100%)`
               }}
@@ -363,7 +363,7 @@ export default function DoctorDetailPage({ doctor, hospitalConfig }: DoctorDetai
         {/* About Doctor Section */}
         <div className="flex flex-col w-full max-w-full">
           {/* Title */}
-          <div className="font-inter font-bold mb-6 w-full text-[#022E61] text-[30px] leading-normal">
+          <div className="font-inter font-bold mb-6 w-full text-[#022E61] text-[clamp(20px,5vw,30px)] leading-normal">
             Về bác sĩ {doctor.name}
           </div>
 

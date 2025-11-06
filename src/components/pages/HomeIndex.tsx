@@ -22,8 +22,7 @@ import MobileNavDrawer from "@/components/MobileNavDrawer";
 import MobileLangSwitcher from "@/components/MobileLangSwitcher";
 import NotificationDropdown from "@/components/NotificationDropdown";
 import { useTranslations } from 'next-intl';
-import { SAMPLE_HOSPITALS } from '@/lib/hospitalSamples';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
@@ -50,33 +49,10 @@ export default function HomeIndex() {
   const tUser = useTranslations('User');
 
   const [searchValue, setSearchValue] = useState('');
-  const [showSuggest, setShowSuggest] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const resultRef = useRef<HTMLDivElement>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  // helper classes for input width anim
   const inputAnimWidthClass = `transition-all duration-300 w-full xl:w-[${isInputFocused ? 360 : 250}px]`;
   const btnAnimWidthClass = `transition-all duration-300 items-center justify-center rounded-[8px] text-white cursor-pointer ${isInputFocused ? 'xl:w-[64px]' : 'xl:w-[180px]'} w-full xl:flex-none flex`;
-
-  // Logic filter
-  const filtered = SAMPLE_HOSPITALS.filter(h => {
-    const matchName = !searchValue || h.name.toLowerCase().includes(searchValue.trim().toLowerCase());
-    return matchName;
-  }).slice(0, 10);
-
-  useEffect(() => {
-      if (!showSuggest) return;
-      function handleClick(e: MouseEvent) {
-        if (!resultRef.current) return;
-        if (!inputRef.current) return;
-        if (!resultRef.current.contains(e.target as Node) && !inputRef.current.contains(e.target as Node)) {
-          setShowSuggest(false);
-        }
-      }
-      document.addEventListener('mousedown', handleClick);
-      return () => document.removeEventListener('mousedown', handleClick);
-  }, [showSuggest]);
 
   return (
     <div className="">
@@ -159,17 +135,6 @@ export default function HomeIndex() {
                     {tHome('searchDescription')}
                   </p>
                 </div>
-                {/* Image shown above the form when stacked (mobile) */}
-                <div className="relative block md:hidden mt-4 w-full">
-                  <Image 
-                    src="/svgs/banner-art.svg" 
-                    alt={tHome('bannerAlt')} 
-                    width={499}
-                    height={339}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto", display: "block" }}
-                  />
-                </div>
                 {/* Inline form with the left block on md+ */}
                 <div className="flex w-full flex-col gap-3 md:flex-row md:flex-wrap md:items-center xl:flex-nowrap xl:items-center rounded-[10px] bg-white px-3 py-3 sm:py-4" style={{ boxShadow: "0 54px 53px -23px rgba(22, 28, 45, 0.50)" }}>
                   <div className="flex h-[50px] w-full md:flex-1 md:min-w-[250px] items-center justify-center rounded-[8px] bg-white/0">
@@ -188,45 +153,15 @@ export default function HomeIndex() {
                   </div>
                   <div className="relative w-full">
                     <Input
-                      ref={inputRef}
                       className={`box-border h-[50px] rounded-lg border border-black/10 bg-white px-4 py-0 text-base sm:text-sm leading-none placeholder:text-black/60 ${inputAnimWidthClass}`}
                       placeholder={tForm('hospitalNamePlaceholder')}
                       aria-label={tForm('hospitalNamePlaceholder')}
                       value={searchValue}
-                      onChange={e => { setSearchValue(e.target.value); setShowSuggest(true); }}
-                      onFocus={() => { setShowSuggest(true); setIsInputFocused(true); }}
+                      onChange={e => setSearchValue(e.target.value)}
+                      onFocus={() => setIsInputFocused(true)}
                       onBlur={() => setIsInputFocused(false)}
                       spellCheck={false}
                     />
-                    {showSuggest && (filtered.length > 0 || !!searchValue) && (
-                      <div ref={resultRef} className="absolute z-20 left-0 right-0 mt-1 w-full rounded-xl bg-white shadow-xl border border-slate-200 max-h-80 overflow-y-auto min-w-0">
-                        {filtered.length === 0 ? (
-                          <div className="p-4 text-sm text-slate-500 text-center">Không tìm thấy bệnh viện phù hợp.</div>
-                        ) : (
-                          filtered.map(hospital => (
-                            <Link 
-                              key={hospital.id} 
-                              href={`/hospitals/${hospital.slug}`}
-                              className="flex items-center px-4 py-2 gap-3 hover:bg-slate-50 transition cursor-pointer"
-                            >
-                              <Image 
-                                src={hospital.logo ?? "/svgs/Logo.svg"} 
-                                alt={hospital.name} 
-                                width={32}
-                                height={32}
-                                className="h-8 w-8 rounded-full object-contain border border-slate-100" 
-                                loading="lazy"
-                              />
-                              <div className="min-w-0 flex-1">
-                                <div className="font-semibold text-sm text-slate-700 truncate">{hospital.name}</div>
-                                <div className="text-xs text-slate-500 truncate">{hospital.address}</div>
-                              </div>
-                              <div className="ml-2 px-2 py-1 text-xs rounded bg-[#007BFF] text-white font-semibold cursor-pointer">Xem chi tiết</div>
-                            </Link>
-                          ))
-                        )}
-                      </div>
-                    )}
                   </div>
                   <button
                     className={btnAnimWidthClass + " h-[50px] px-3"}
@@ -256,8 +191,7 @@ export default function HomeIndex() {
           </div>
         </div>
       </div>
-      {/* Hospitals List - new styled block with Swiper */}
-      <HospitalsStyledSection />
+      <HospitalsStyledSection searchValue={searchValue} />
       {/* <HomeMainFeatureSection /> */}
       <HomeFooter />
     </div>
